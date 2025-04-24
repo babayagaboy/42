@@ -69,21 +69,21 @@ char	**ft_split(char const *s, char c)
 	s_ptr = (char *)s;
 	i = 0;
 	j = 0;
-	str_splitted = malloc((ft_wordcount(s_ptr, c) + 1) * sizeof(char *));
-	if (str_splitted == NULL || s == NULL)
+	if (c == 0 || s == NULL)
+		return (NULL);
+	str_splitted = ft_calloc((ft_wordcount(s_ptr, c) + 1), sizeof(char *));
+	if (!str_splitted)
 		return (NULL);
 	while (s_ptr[i] != '\0')
 	{
 		if (!is_separator(s_ptr[i], c))
 		{
-			str_splitted[j] = ft_splitter(&s_ptr[i], c);
+			str_splitted[j++] = ft_splitter(&s_ptr[i], c);
 			while (s_ptr[i] != '\0' && !is_separator(s_ptr[i], c))
 				i++;
-			j++;
 		}
 		else
 			i++;
 	}
-	str_splitted[j] = 0;
 	return (str_splitted);
 }
