@@ -69,7 +69,7 @@ char	**ft_split(char const *s, char c)
 	s_ptr = (char *)s;
 	i = 0;
 	j = 0;
-	if (c == 0 || s == NULL)
+	if (s == NULL)
 		return (NULL);
 	str_splitted = ft_calloc((ft_wordcount(s_ptr, c) + 1), sizeof(char *));
 	if (!str_splitted)
