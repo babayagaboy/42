@@ -1,0 +1,13 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "C/C++ Runner: Debug Session",
+      "type": "lldb",
+      "request": "launch",
+      "args": [],
+      "cwd": "/Users/hugoguterres/Documents/42/rank 1/ft_printf",
+      "program": "/Users/hugoguterres/Documents/42/rank 1/ft_printf/build/Debug/outDebug"
+    }
+  ]
+}

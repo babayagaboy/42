@@ -54,11 +54,9 @@ char	*ft_strcat(char *dest, char *src)
 char	*ft_strjoin(char *s1, char *s2)
 {
 	char	*newstr;
-	int		i;
 
 	if (!s2)
 		return (NULL);
-	i = 0;
 	newstr = ft_calloc(ft_strlen(s1) + ft_strlen(s2) + 1, 1);
 	if (!newstr)
 		return (NULL);

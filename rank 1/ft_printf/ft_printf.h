@@ -10,6 +10,12 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+#ifndef FT_PRINT_H
+# define FT_PRINT_H
 
-#include <stdio.h>
-#include <stdarg.h>
+# include <stdio.h>
+# include <unistd.h>
+# include <stdio.h>
+# include <stdarg.h>
+
+# endif
