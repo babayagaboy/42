@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.c                                    :+:      :+:    :+:   */
+/*   get_next_line_bonus.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hgutterr <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/04/24 16:45:44 by hgutterr          #+#    #+#             */
-/*   Updated: 2025/05/01 18:57:17 by hgutterr         ###   ########.fr       */
+/*   Created: 2025/05/01 17:15:58 by hgutterr          #+#    #+#             */
+/*   Updated: 2025/05/01 18:48:33 by hgutterr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line.h"
+#include "get_next_line_bonus.h"
 
 char	*ft_strdup(char *s)
 {
@@ -60,22 +60,22 @@ char	*split_newline(char *buff, char **remainer)
 
 char	*get_next_line(int fd)
 {
-	static char	*remainder;
+	static char	*remainder[1024];
 	char		buff[BUFFER_SIZE];
 	char		*s1;
 	char		*partial;
 
 	s1 = ft_strdup("");
-	if (remainder)
+	if (remainder[fd])
 	{
-		s1 = ft_strjoin(s1, remainder);
-		remainder = NULL;
+		s1 = ft_strjoin(s1, remainder[fd]);
+		remainder[fd] = NULL;
 	}
 	while (read(fd, buff, BUFFER_SIZE))
 	{
 		if (ft_strchr(buff, '\n'))
 		{
-			partial = split_newline(buff, &remainder);
+			partial = split_newline(buff, &remainder[fd]);
 			s1 = ft_strjoin(s1, partial);
 			free(partial);
 			break ;
@@ -89,14 +89,27 @@ char	*get_next_line(int fd)
 /* 
 int	main(int argc, char **argv)
 {
-	int	fd;
+	int fd1;
+	int fd2;
+	int fd3;
 	char	*s1;
 
 	(void) argc;
-	fd = open(argv[1], O_RDONLY);
-	while (s1 && argv[1])
+	fd1 = open(argv[1], O_RDONLY);
+	fd2 = open(argv[2], O_RDONLY);
+	fd3 = open(argv[3], O_RDONLY);
+
+	while (s1)
 	{
-		s1 = get_next_line(fd);
+		s1 = get_next_line(fd1);
+		if (!s1)
+			break ;
+		printf("%s", s1);
+		s1 = get_next_line(fd2);
+		if (!s1)
+			break ;
+		printf("%s", s1);
+		s1 = get_next_line(fd3);
 		if (!s1)
 			break ;
 		printf("%s", s1);
