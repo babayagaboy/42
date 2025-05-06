@@ -6,7 +6,7 @@
 /*   By: hgutterr <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/01 17:15:58 by hgutterr          #+#    #+#             */
-/*   Updated: 2025/05/06 17:41:38 by hgutterr         ###   ########.fr       */
+/*   Updated: 2025/05/06 19:24:16 by hgutterr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,40 +43,49 @@ char	*ft_strchr(char *s, int c)
 	return (NULL);
 }
 
-char	*split_newline(char *buff, char **remainer)
+char	*split_newline(char *buff, char *remainer)
 {
 	char	*pos;
 	char	*pre;
 	int		len;
+	int		i;
 
+	i = 0;
 	pos = ft_strchr(buff, '\n');
 	if (!pos)
 		return (NULL);
 	len = (pos - buff) + 1;
 	pre = ft_substr(buff, 0, len);
-	*remainer = ft_strdup(pos + 1);
+	while (pos[i])
+	{
+		remainer[i] = pos[i + 1];
+		i++;
+	}
+	remainer[i] = '\0';
 	return (pre);
 }
 
-char	*get_line(char *s1, int fd, int bytes)
+char	*get_line(char *s1, int fd, char *buff, int bytes)
 {
-	static char	*remainder[1024];
-	char		buff[BUFFER_SIZE + 1];
+	static char	remainder[1024][BUFFER_SIZE];
+	char		*temp;
+	int			i;
 
-	if (remainder[fd])
-	{
-		s1 = ft_strjoin(s1, remainder[fd]);
-		free(remainder[fd]);
-		remainder[fd] = NULL;
-	}
+	s1 = ft_strjoin(s1, remainder[fd]);
+	i = 0;
+	while (remainder[fd][i])
+		remainder[fd][i++] = '\0';
 	while (bytes > 0)
 	{
 		bytes = read(fd, buff, BUFFER_SIZE);
 		if (bytes <= 0)
 			break ;
-		buff[bytes] = '\0';
 		if (ft_strchr(buff, '\n'))
-			return (ft_strjoin(s1, split_newline(buff, &remainder[fd])));
+		{
+			temp = split_newline(buff, remainder[fd]);
+			s1 = ft_strjoin(s1, temp);
+			return (free(temp), s1);
+		}
 		s1 = ft_strjoin(s1, buff);
 	}
 	if (!*s1)
@@ -86,58 +95,40 @@ char	*get_line(char *s1, int fd, int bytes)
 
 char	*get_next_line(int fd)
 {
-	char	*s1;
-	int		bytes;
+	char		*s1;
+	int			bytes;
+	char		*buff;
 
 	if (fd < 0 || BUFFER_SIZE <= 0)
 		return (NULL);
 	s1 = ft_strdup("");
-	if (!s1)
+	buff = ft_calloc(BUFFER_SIZE + 1, 1);
+	if (!s1 || !buff)
 		return (NULL);
 	bytes = 1;
-	return (get_line(s1, fd, bytes));
+	s1 = get_line(s1, fd, buff, bytes);
+	if (buff)
+		free(buff);
+	return (s1);
 }
 
-/* int	main(int argc, char **argv)
+/* int main()
 {
-	int		fd[argc - 1];
-	char	*line;
-	int		files_open = 0;
-	int		i;
+	int fd = open("a.txt", O_RDONLY);
+	int fdb = open("b.txt", O_RDONLY);
+	char *a;
 
-	if (argc < 2)
-		return (printf("Usage: %s <file1> <file2> ...\n", argv[0]), 1);
-	while (files_open < argc - 1)
+	while ((a = get_next_line(fd)))
 	{
-		fd[files_open] = open(argv[files_open + 1], O_RDONLY);
-		if (fd[files_open] < 0)
-			perror(argv[files_open + 1]);
-		files_open++;
+		printf("%s", a);
+		free (a);
 	}
-	while (1)
+
+	while ((a = get_next_line(fdb)))
 	{
-		int lines_read = 0;
-		i = 0;
-		while (i < argc - 1)
-		{
-			if (fd[i] >= 0)
-			{
-				line = get_next_line(fd[i]);
-				if (line)
-				{
-					printf("fd %d: %s", i, line);
-					free(line);
-					lines_read++;
-				}
-			}
-			i++;
-		}
-		if (lines_read == 0)
-			break ;
+		printf("%s", a);
+		free (a);
 	}
-	i = 0;
-	while (i < argc - 1)
-		if (fd[i] >= 0)
-			close(fd[i++]);
-	return (0);
+
+	return 0; 
 } */
