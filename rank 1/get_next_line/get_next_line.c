@@ -6,7 +6,7 @@
 /*   By: hgutterr <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/24 16:45:44 by hgutterr          #+#    #+#             */
-/*   Updated: 2025/05/01 18:57:17 by hgutterr         ###   ########.fr       */
+/*   Updated: 2025/05/06 17:40:21 by hgutterr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,36 +58,47 @@ char	*split_newline(char *buff, char **remainer)
 	return (pre);
 }
 
-char	*get_next_line(int fd)
+char	*get_line(char *s1, int fd, int bytes)
 {
 	static char	*remainder;
-	char		buff[BUFFER_SIZE];
-	char		*s1;
-	char		*partial;
+	char		buff[BUFFER_SIZE + 1];
 
-	s1 = ft_strdup("");
 	if (remainder)
 	{
 		s1 = ft_strjoin(s1, remainder);
+		free(remainder);
 		remainder = NULL;
 	}
-	while (read(fd, buff, BUFFER_SIZE))
+	while (bytes > 0)
 	{
-		if (ft_strchr(buff, '\n'))
-		{
-			partial = split_newline(buff, &remainder);
-			s1 = ft_strjoin(s1, partial);
-			free(partial);
+		bytes = read(fd, buff, BUFFER_SIZE);
+		if (bytes <= 0)
 			break ;
-		}
+		buff[bytes] = '\0';
+		if (ft_strchr(buff, '\n'))
+			return (ft_strjoin(s1, split_newline(buff, &remainder)));
 		s1 = ft_strjoin(s1, buff);
 	}
 	if (!*s1)
 		return (free(s1), NULL);
 	return (s1);
 }
-/* 
-int	main(int argc, char **argv)
+
+char	*get_next_line(int fd)
+{
+	char	*s1;
+	int		bytes;
+
+	if (fd < 0 || BUFFER_SIZE <= 0)
+		return (NULL);
+	s1 = ft_strdup("");
+	if (!s1)
+		return (NULL);
+	bytes = 1;
+	return (get_line(s1, fd, bytes));
+}
+
+/* int	main(int argc, char **argv)
 {
 	int	fd;
 	char	*s1;
