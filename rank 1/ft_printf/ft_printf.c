@@ -6,7 +6,7 @@
 /*   By: hgutterr <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/24 16:29:31 by hgutterr          #+#    #+#             */
-/*   Updated: 2025/04/24 16:29:32 by hgutterr         ###   ########.fr       */
+/*   Updated: 2025/05/01 14:48:25 by hgutterr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,22 +58,20 @@ int	print_format(char type, va_list ap)
 	len = 0;
 	if (type == 'c')
 		len += print_char(va_arg(ap, int));
-	if (type == 's')
+	else if (type == 's')
 		len += print_str(va_arg(ap, char *));
-	if (type == 'd' || type == 'i')
+	else if (type == 'd' || type == 'i')
 		len += print_digit((long) va_arg(ap, int), 10, type);
-	if (type == 'x')
+	else if (type == 'x')
 		len += print_digit((long) va_arg(ap, unsigned int), 16, type);
-	if (type == 'X')
+	else if (type == 'X')
 		len += print_digit((long) va_arg(ap, unsigned int), 16, type);
-	/*	if (type == 'p')
+	/*	else if (type == 'p')
 		len += print_p(va_arg(ap, void *));
-	if (type == 'u')
+	else if (type == 'u')
 		len += print_char(va_arg(ap, int)); */
-	if (type == '%')
-		len += print_char('%');
 	else
-		len += write(1, &type, 1);
+		len += print_char('%');
 	return (len);
 }
 
@@ -98,9 +96,9 @@ int	ft_printf(const char *str, ...)
 
 int main()
 {
-	int len = ft_printf("Hello %s", "Hugo");
-	ft_printf(", and this string has %d char\n", len);
+	int len = ft_printf("Hello %z\n", "Hugo");
+	ft_printf("string has %d char\n", len);
 
-	len = printf("Hello %s", "Hugo");
-	printf(", and this string has %d char\n", len);
+	len = printf("Hello %z\n", "Hugo");
+	printf("string has %d char\n", len);
 }
