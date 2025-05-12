@@ -6,7 +6,7 @@
 /*   By: hgutterr <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/01 17:15:58 by hgutterr          #+#    #+#             */
-/*   Updated: 2025/05/12 14:41:53 by hgutterr         ###   ########.fr       */
+/*   Updated: 2025/05/12 18:35:01 by hgutterr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,6 +80,8 @@ char	*get_line(char *s1, int fd, char *buff, int bytes)
 		if (ft_strchr(buff, '\n'))
 			return (join_lines(buff, remainder[fd], s1));
 		s1 = ft_strjoin(s1, buff);
+		while (buff[i])
+			buff[i++] = 0;
 	}
 	if (!*s1)
 		return (free(s1), NULL);
@@ -108,8 +110,8 @@ char	*get_next_line(int fd)
 		free(buff);
 	return (s1);
 }
-
-/* int main()
+/* 
+int main()
 {
 	int fd = open("a", O_RDONLY);
 	int fdb = open("b", O_RDONLY);
