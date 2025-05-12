@@ -6,7 +6,7 @@
 /*   By: hgutterr <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/24 16:45:44 by hgutterr          #+#    #+#             */
-/*   Updated: 2025/05/06 19:24:32 by hgutterr         ###   ########.fr       */
+/*   Updated: 2025/05/12 14:52:42 by hgutterr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ char	*ft_strdup(char *s)
 	int		i;
 
 	i = 0;
-	dup = ft_calloc(ft_strlen(s) + 1, 1);
+	dup = malloc(ft_strlen(s) + 1);
 	if (!dup)
 		return (NULL);
 	while (s[i])
@@ -30,20 +30,7 @@ char	*ft_strdup(char *s)
 	return (dup);
 }
 
-char	*ft_strchr(char *s, int c)
-{
-	while (*s)
-	{
-		if (*s == (char ) c)
-			return ((char *) s);
-		s++;
-	}
-	if ((char ) c == '\0')
-		return ((char *) s);
-	return (NULL);
-}
-
-char	*split_newline(char *buff, char *remainer)
+char	*split_newline(char *buff, char *remainder)
 {
 	char	*pos;
 	char	*pre;
@@ -58,19 +45,29 @@ char	*split_newline(char *buff, char *remainer)
 	pre = ft_substr(buff, 0, len);
 	while (pos[i])
 	{
-		remainer[i] = pos[i + 1];
+		remainder[i] = pos[i + 1];
 		i++;
 	}
-	remainer[i] = '\0';
+	remainder[i] = '\0';
 	return (pre);
+}
+
+char	*join_lines(char *buff, char *remainder, char *s1)
+{
+	char	*temp;
+
+	temp = split_newline(buff, remainder);
+	s1 = ft_strjoin(s1, temp);
+	return (free(temp), s1);
 }
 
 char	*get_line(char *s1, int fd, char *buff, int bytes)
 {
 	static char	remainder[BUFFER_SIZE];
-	char		*temp;
 	int			i;
 
+	if (ft_strchr(remainder, '\n'))
+		return (join_lines(remainder, remainder, s1));
 	s1 = ft_strjoin(s1, remainder);
 	i = 0;
 	while (remainder[i])
@@ -81,11 +78,7 @@ char	*get_line(char *s1, int fd, char *buff, int bytes)
 		if (bytes <= 0)
 			break ;
 		if (ft_strchr(buff, '\n'))
-		{
-			temp = split_newline(buff, remainder);
-			s1 = ft_strjoin(s1, temp);
-			return (free(temp), s1);
-		}
+			return (join_lines(buff, remainder, s1));
 		s1 = ft_strjoin(s1, buff);
 	}
 	if (!*s1)
@@ -98,23 +91,28 @@ char	*get_next_line(int fd)
 	char		*s1;
 	int			bytes;
 	char		*buff;
+	int			i;
 
+	i = 0;
 	if (fd < 0 || BUFFER_SIZE <= 0)
 		return (NULL);
 	s1 = ft_strdup("");
-	buff = ft_calloc(BUFFER_SIZE + 1, 1);
+	buff = malloc(BUFFER_SIZE + 1);
 	if (!s1 || !buff)
 		return (NULL);
+	while (i < BUFFER_SIZE + 1)
+		buff[i++] = '\0';
 	bytes = 1;
 	s1 = get_line(s1, fd, buff, bytes);
 	if (buff)
 		free(buff);
 	return (s1);
 }
-
-/* int	main(int argc, char **argv)
+/* 
+int	main(int argc, char **argv)
 {
 	int	fd;
+	int i = 0;
 	char	*s1 = "";
 
 	(void) argc;
@@ -124,8 +122,8 @@ char	*get_next_line(int fd)
 		s1 = get_next_line(fd);
 		if (!s1)
 			break ;
-		printf("%s", s1);
+		printf("%d:%s", ++i, s1);
 		free(s1);
 	}
 	close(fd);
-}*/
+} */

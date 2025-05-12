@@ -6,7 +6,7 @@
 /*   By: hgutterr <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/24 16:47:24 by hgutterr          #+#    #+#             */
-/*   Updated: 2025/05/06 19:03:26 by hgutterr         ###   ########.fr       */
+/*   Updated: 2025/05/12 14:21:01 by hgutterr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@
 # endif
 
 char	*get_next_line(int fd);
-void	*ft_calloc(size_t nmemb, size_t size);
+char	*ft_strchr(char *s, int c);
 char	*ft_strcat(char *dest, char *src);
 char	*ft_strjoin(char *s1, char *s2);
 char	*ft_strdup(char *s);

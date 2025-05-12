@@ -6,31 +6,11 @@
 /*   By: hgutterr <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/24 16:47:13 by hgutterr          #+#    #+#             */
-/*   Updated: 2025/05/06 18:55:26 by hgutterr         ###   ########.fr       */
+/*   Updated: 2025/05/12 14:18:21 by hgutterr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
-
-void	*ft_calloc(size_t nmemb, size_t size)
-{
-	unsigned char	*ptr;
-	size_t			i;
-	size_t			total;
-
-	i = 0;
-	if (nmemb == 0 || size == 0)
-		return (malloc(0));
-	if (nmemb > SIZE_MAX / size)
-		return (NULL);
-	total = nmemb * size;
-	ptr = malloc(total);
-	if (!ptr)
-		return (NULL);
-	while (i < total)
-		ptr[i++] = 0;
-	return (ptr);
-}
 
 char	*ft_strcat(char *dest, char *src)
 {
@@ -51,13 +31,26 @@ char	*ft_strcat(char *dest, char *src)
 	return (dest);
 }
 
+char	*ft_strchr(char *s, int c)
+{
+	while (*s)
+	{
+		if (*s == (char ) c)
+			return ((char *) s);
+		s++;
+	}
+	if ((char ) c == '\0')
+		return ((char *) s);
+	return (NULL);
+}
+
 char	*ft_strjoin(char *s1, char *s2)
 {
 	char	*newstr;
 
 	if (!s2)
 		return (NULL);
-	newstr = ft_calloc(ft_strlen(s1) + ft_strlen(s2) + 1, 1);
+	newstr = malloc(ft_strlen(s1) + ft_strlen(s2) + 1);
 	if (!newstr)
 		return (NULL);
 	newstr[0] = '\0';
