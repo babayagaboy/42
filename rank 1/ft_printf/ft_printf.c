@@ -6,99 +6,121 @@
 /*   By: hgutterr <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/24 16:29:31 by hgutterr          #+#    #+#             */
-/*   Updated: 2025/05/01 14:48:25 by hgutterr         ###   ########.fr       */
+/*   Updated: 2025/05/13 14:42:20 by hgutterr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int	print_char(int c)
+int	p_char(int c)
 {
-	return(write(1, &c, 1));
+	return (write(1, &c, 1));
 }
 
-int	print_str(char *str)
+int	p_str(char *str)
 {
-	int i;
+	int		i;
 
 	i = 0;
+	if (!str)
+		return (write(1, "(null)", 6));
 	while (str[i])
-		i += print_char(str[i]);
-	return(i);
+		i += p_char(str[i]);
+	return (i);
 }
 
-int	print_digit(long nbr, int base, char type)
+int	p_digit(unsigned long long nbr, int base, char type)
 {
-	int len;
-	char *base_char;
+	char	*base_char;
 
+	base_char = "0123456789abcdef";
 	if (type == 'X')
 		base_char = "0123456789ABCDEF";
+	if (type == 'u')
+		base = 10;
+	if (nbr < (unsigned long long) base)
+		return (p_char(base_char[nbr]));
 	else
-		base_char = "0123456789abcdef";
-	len = 0;
-	if (nbr < 0)
-	{
-		print_char('-');
-		return(print_digit(-nbr, base, type) + 1); //+1 for the menos
-	}
-	else if (nbr < base)
-		return(print_char(base_char[nbr]));
-	else
-	{
-		len = print_digit(nbr / base, base, type);
-		return(len + print_digit(nbr % base, base, type));
-	}
+		return (p_digit(nbr / base, base, type)
+			+ p_char(base_char[nbr % base]));
 }
 
-int	print_format(char type, va_list ap)
+int	p_format(char type, va_list ap)
 {
-	int	len;
+	long		nbr;
+	void		*p;
 
-	len = 0;
 	if (type == 'c')
-		len += print_char(va_arg(ap, int));
+		return (p_char(va_arg(ap, int)));
 	else if (type == 's')
-		len += print_str(va_arg(ap, char *));
+		return (p_str(va_arg(ap, char *)));
 	else if (type == 'd' || type == 'i')
-		len += print_digit((long) va_arg(ap, int), 10, type);
-	else if (type == 'x')
-		len += print_digit((long) va_arg(ap, unsigned int), 16, type);
-	else if (type == 'X')
-		len += print_digit((long) va_arg(ap, unsigned int), 16, type);
-	/*	else if (type == 'p')
-		len += print_p(va_arg(ap, void *));
-	else if (type == 'u')
-		len += print_char(va_arg(ap, int)); */
-	else
-		len += print_char('%');
-	return (len);
+	{
+		nbr = va_arg(ap, int);
+		if (nbr < 0)
+			return (p_char('-') + p_digit(-(long long)nbr, 10, type));
+		return (p_digit(nbr, 10, type));
+	}
+	else if (type == 'x' || type == 'X' || type == 'u')
+		return (p_digit((long) va_arg(ap, unsigned int), 16, type));
+	else if (type == 'p')
+	{
+		p = va_arg(ap, void *);
+		if (!p)
+			return (write(1, "(nil)", 5));
+		return (p_str("0x") + p_digit((unsigned long long) p, 16, type));
+	}
+	return (p_char('%'));
 }
 
 int	ft_printf(const char *str, ...)
 {
-	va_list ap;
-	int len;
+	va_list		ap;
+	int			len;
 
+	if (!str)
+		return (-1);
 	va_start(ap, str);
 	len = 0;
 	while (*str)
 	{
-		if(*str == '%')
-			len += print_format(*(++str), ap);
+		if (*str == '%')
+			len += p_format(*(++str), ap);
 		else
-			len += print_char(*str);
+			len += p_char(*str);
 		str++;
 	}
 	va_end(ap);
 	return (len);
 }
 
-int main()
+/* int main()
 {
-	int len = ft_printf("Hello %z\n", "Hugo");
+	int len = ft_printf("Hello %%\n");
 	ft_printf("string has %d char\n", len);
 
-	len = printf("Hello %z\n", "Hugo");
+	len = printf("Hello %%\n");
 	printf("string has %d char\n", len);
-}
+
+	unsigned int a = -52;
+	char *p = "h";
+	len = printf("%d -> %x -> %X -> %u; %p\n", -52, -52, -52, a, p);
+	printf("len = %d\n", len);
+	len = ft_printf("%d -> %x -> %X -> %u; %p\n", -52, -52, -52, a, p);
+	printf("len = %d\n", len);
+
+	char *s1 = NULL;
+	len = printf("%s\n", s1);
+	printf("len = %d\n", len);
+	char *s2 = NULL;
+	len = ft_printf("%s\n", s2);
+	printf("len = %d\n", len);
+
+
+	char *p1 = NULL;
+	len = printf("%p -> %p\n", p1, p);
+	printf("len = %d\n", len);
+	char *p2 = NULL;
+	len = ft_printf("%p -> %p\n", p2, p);
+	printf("len = %d\n", len);
+} */

@@ -6,7 +6,7 @@
 /*   By: hgutterr <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/01 17:15:58 by hgutterr          #+#    #+#             */
-/*   Updated: 2025/05/06 19:24:16 by hgutterr         ###   ########.fr       */
+/*   Updated: 2025/05/12 18:35:01 by hgutterr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ char	*ft_strdup(char *s)
 	int		i;
 
 	i = 0;
-	dup = ft_calloc(ft_strlen(s) + 1, 1);
+	dup = malloc(ft_strlen(s) + 1);
 	if (!dup)
 		return (NULL);
 	while (s[i])
@@ -28,19 +28,6 @@ char	*ft_strdup(char *s)
 	}
 	dup[i] = '\0';
 	return (dup);
-}
-
-char	*ft_strchr(char *s, int c)
-{
-	while (*s)
-	{
-		if (*s == (char ) c)
-			return ((char *) s);
-		s++;
-	}
-	if ((char ) c == '\0')
-		return ((char *) s);
-	return (NULL);
 }
 
 char	*split_newline(char *buff, char *remainer)
@@ -65,12 +52,22 @@ char	*split_newline(char *buff, char *remainer)
 	return (pre);
 }
 
+char	*join_lines(char *buff, char *remainder, char *s1)
+{
+	char	*temp;
+
+	temp = split_newline(buff, remainder);
+	s1 = ft_strjoin(s1, temp);
+	return (free(temp), s1);
+}
+
 char	*get_line(char *s1, int fd, char *buff, int bytes)
 {
 	static char	remainder[1024][BUFFER_SIZE];
-	char		*temp;
 	int			i;
 
+	if (ft_strchr(remainder[fd], '\n'))
+		return (join_lines(remainder[fd], remainder[fd], s1));
 	s1 = ft_strjoin(s1, remainder[fd]);
 	i = 0;
 	while (remainder[fd][i])
@@ -81,12 +78,10 @@ char	*get_line(char *s1, int fd, char *buff, int bytes)
 		if (bytes <= 0)
 			break ;
 		if (ft_strchr(buff, '\n'))
-		{
-			temp = split_newline(buff, remainder[fd]);
-			s1 = ft_strjoin(s1, temp);
-			return (free(temp), s1);
-		}
+			return (join_lines(buff, remainder[fd], s1));
 		s1 = ft_strjoin(s1, buff);
+		while (buff[i])
+			buff[i++] = 0;
 	}
 	if (!*s1)
 		return (free(s1), NULL);
@@ -98,35 +93,40 @@ char	*get_next_line(int fd)
 	char		*s1;
 	int			bytes;
 	char		*buff;
+	int			i;
 
+	i = 0;
 	if (fd < 0 || BUFFER_SIZE <= 0)
 		return (NULL);
 	s1 = ft_strdup("");
-	buff = ft_calloc(BUFFER_SIZE + 1, 1);
+	buff = malloc(BUFFER_SIZE + 1);
 	if (!s1 || !buff)
 		return (NULL);
+	while (i < BUFFER_SIZE + 1)
+		buff[i++] = '\0';
 	bytes = 1;
 	s1 = get_line(s1, fd, buff, bytes);
 	if (buff)
 		free(buff);
 	return (s1);
 }
-
-/* int main()
+/* 
+int main()
 {
-	int fd = open("a.txt", O_RDONLY);
-	int fdb = open("b.txt", O_RDONLY);
+	int fd = open("a", O_RDONLY);
+	int fdb = open("b", O_RDONLY);
 	char *a;
+	int i = 0;
 
 	while ((a = get_next_line(fd)))
 	{
-		printf("%s", a);
+		printf("%d:%s", ++i, a);
 		free (a);
 	}
-
+	i = 0;
 	while ((a = get_next_line(fdb)))
 	{
-		printf("%s", a);
+		printf("%d:%s", ++i, a);
 		free (a);
 	}
 
