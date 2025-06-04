@@ -19,22 +19,31 @@ SRCS = fdf.c
 OBJS = $(SRCS:%.c=$(OBJDIR)/%.o)
 NAME = fdf
 
-all: $(NAME)
+LIBFT_DIR = libft
+LIBFT_LIB = $(LIBFT_DIR)/libft.a
+LIBFT_INC = -I$(LIBFT_DIR)
+
+all: $(LIBFT_LIB) $(NAME)
 
 $(NAME): $(OBJS)
-	$(CC) $(CFLAGS) $(OBJS) $(MLX_FLAGS) -o $(NAME)
+	$(CC) $(CFLAGS) $(OBJS) $(LIBFT_LIB) $(MLX_FLAGS) -o $(NAME)
 
 $(OBJDIR)/%.o: %.c | $(OBJDIR)
-	$(CC) $(CFLAGS) -Imlx -c $< -o $@
+	$(CC) $(CFLAGS) -Imlx $(LIBFT_INC) -c $< -o $@
 
 $(OBJDIR):
 	mkdir -p $(OBJDIR)
 
+$(LIBFT_LIB):
+	$(MAKE) -C $(LIBFT_DIR)
+
 clean:
 	rm -rf $(OBJDIR)
+	$(MAKE) -C $(LIBFT_DIR) clean
 
 fclean: clean
 	rm -f $(NAME)
+	$(MAKE) -C $(LIBFT_DIR) fclean
 
 re: fclean all
 
