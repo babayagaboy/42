@@ -43,6 +43,11 @@ int	main(int argc, char **argv)
 /* 	mlx = mlx_init();
 	mlx_win = mlx_new_window(mlx, 500, 500, "Fdf");
 	mlx_loop(mlx);
-	(void) mlx_win; */
+	(void) mlx_win; 
+	
+	
+	https://medium.com/@amehri_tarik/fdf-42-a-detailed-walkthrough-7184cca317fc
+	
+	*/
 	return (0);
 }
