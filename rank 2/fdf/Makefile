@@ -11,11 +11,12 @@
 # **************************************************************************** #
 
 CC = cc
-CFLAGS = #-Wall -Wextra -Werror
+CFLAGS = -g #-Wall -Wextra -Werror
 MLX_FLAGS = -Lmlx -lmlx -lXext -lX11 -lm -lbsd
 
 OBJDIR = obj
-SRCS = fdf.c
+SRCS_GNL = gnl/get_next_line.c gnl/get_next_line_utils.c
+SRCS = $(SRCS_GNL) srcs/fdf.c srcs/read_map.c
 OBJS = $(SRCS:%.c=$(OBJDIR)/%.o)
 NAME = fdf
 
@@ -28,8 +29,10 @@ all: $(LIBFT_LIB) $(NAME)
 $(NAME): $(OBJS)
 	$(CC) $(CFLAGS) $(OBJS) $(LIBFT_LIB) $(MLX_FLAGS) -o $(NAME)
 
-$(OBJDIR)/%.o: %.c | $(OBJDIR)
+$(OBJDIR)/%.o: %.c
+	@mkdir -p $(dir $@)
 	$(CC) $(CFLAGS) -Imlx $(LIBFT_INC) -c $< -o $@
+
 
 $(OBJDIR):
 	mkdir -p $(OBJDIR)

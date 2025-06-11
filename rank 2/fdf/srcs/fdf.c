@@ -10,12 +10,10 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fdf.h"
+#include "../headers/fdf.h"
+#include "../headers/fdf_macros.h"
 #include <stdlib.h>
-#define ESC_KEY 65307
-#define RED 0x00FF0000
-#define GREEN 0x0000FF00
-#define WHITE 0x00FFFFFF
+
 
 
 int	key_hook(int keycode, void *param)
@@ -27,6 +25,56 @@ int	key_hook(int keycode, void *param)
 
 int	main(int argc, char **argv)
 {
+	t_map	*map;
+	int		fd;
+	int		x;
+	int		y;
+
+	if (argc != 2)
+	{
+		ft_putendl_fd("Usage: ./fdf <map.fdf>", 2);
+		return (1);
+	}
+	if (!ft_strnstr(argv[1], ".fdf", ft_strlen(argv[1])) ||
+		ft_strncmp(argv[1] + ft_strlen(argv[1]) - 4, ".fdf", 4) != 0)
+	{
+		ft_putendl_fd("Error: File must have .fdf extension", 2);
+		return (1);
+	}
+	fd = open(argv[1], O_RDONLY);
+	if (fd < 0)
+	{
+		perror("open");
+		return (1);
+	}
+	map = read_map(fd);
+	printf("map w: %d\n", map->width);
+	printf("map h: %d\n", map->height);
+	y = 0;
+	while (y < map->height)
+	{
+		x = 0;
+		while (x < map->width)
+		{
+			printf("%d ", map->points[y][x].z);
+			x++;
+		}
+		printf("\n");
+		y++;
+	}
+	for (int i = 0; i <= MAX_HEIGHT; i++)
+	{
+		free(map->points[i]);
+	}
+	free(map);
+	return (0);
+}
+
+
+
+
+
+/* 
 	void	*mlx;
 	void	*win;
 	int		winx = 800;
@@ -74,7 +122,7 @@ int	main(int argc, char **argv)
 		{
 			int px = x0 + i; 
 			int py = y0 + y;
-			*(int *)(addr + (py * line_length + px * (bpp / 8))) = GREEN;
+			*(int *)(addr + (py * line_length + px * (bpp / 8))) = BLUE;
 		}
 	}
 	
@@ -82,5 +130,4 @@ int	main(int argc, char **argv)
 	mlx_put_image_to_window(mlx, win, img, 0, 0);
 	
 	mlx_key_hook(win, key_hook, NULL);
-	mlx_loop(mlx);
-}
+	mlx_loop(mlx); */

@@ -6,15 +6,15 @@
 /*   By: hgutterr <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/04 13:04:11 by hgutterr          #+#    #+#             */
-/*   Updated: 2025/06/10 23:39:27 by hgutterr         ###   ########.fr       */
+/*   Updated: 2025/06/11 18:09:11 by hgutterr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FDF_H
 # define FDF_H
-# include "mlx/mlx.h"
-# include "gnl/get_next_line.h"
-# include "libft/libft.h"
+# include "../mlx/mlx.h"
+# include "../gnl/get_next_line.h"
+# include "../libft/libft.h"
 # include <math.h>
 # include <stdio.h>
 # include <string.h>
@@ -38,5 +38,8 @@ typedef struct s_map
 	int		height;
 }	t_map;
 
+static	int	count_words(char *line);
+static	t_point	*parse_line(char *line, int y);
+t_map	*read_map(int fd);
 
 #endif
