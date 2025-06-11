@@ -6,7 +6,7 @@
 /*   By: hgutterr <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/04 13:04:11 by hgutterr          #+#    #+#             */
-/*   Updated: 2025/06/04 13:22:56 by hgutterr         ###   ########.fr       */
+/*   Updated: 2025/06/10 23:39:27 by hgutterr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,5 +30,13 @@ typedef struct s_point {
 	int	y;
 	int	z;
 }	t_point;
+
+typedef struct s_map
+{
+	t_point **points;
+	int		width;
+	int		height;
+}	t_map;
+
 
 #endif

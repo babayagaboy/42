@@ -6,13 +6,13 @@
 /*   By: hgutterr <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/24 16:47:13 by hgutterr          #+#    #+#             */
-/*   Updated: 2025/05/12 14:18:21 by hgutterr         ###   ########.fr       */
+/*   Updated: 2025/06/11 01:02:23 by hgutterr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
-char	*ft_strcat(char *dest, char *src)
+char	*ft_gnl_strcat(char *dest, char *src)
 {
 	int	i;
 	int	j;
@@ -31,7 +31,7 @@ char	*ft_strcat(char *dest, char *src)
 	return (dest);
 }
 
-char	*ft_strchr(char *s, int c)
+char	*ft_gnl_strchr(char *s, int c)
 {
 	while (*s)
 	{
@@ -44,23 +44,23 @@ char	*ft_strchr(char *s, int c)
 	return (NULL);
 }
 
-char	*ft_strjoin(char *s1, char *s2)
+char	*ft_gnl_strjoin(char *s1, char *s2)
 {
 	char	*newstr;
 
 	if (!s2)
 		return (NULL);
-	newstr = malloc(ft_strlen(s1) + ft_strlen(s2) + 1);
+	newstr = malloc(ft_gnl_strlen(s1) + ft_gnl_strlen(s2) + 1);
 	if (!newstr)
 		return (NULL);
 	newstr[0] = '\0';
-	ft_strcat(newstr, s1);
-	ft_strcat(newstr, s2);
+	ft_gnl_strcat(newstr, s1);
+	ft_gnl_strcat(newstr, s2);
 	free(s1);
 	return (newstr);
 }
 
-size_t	ft_strlen(char *s)
+size_t	ft_gnl_strlen(char *s)
 {
 	int	i;
 
@@ -70,7 +70,7 @@ size_t	ft_strlen(char *s)
 	return (i);
 }
 
-char	*ft_substr(char *s, unsigned int start, size_t len)
+char	*ft_gnl_substr(char *s, unsigned int start, size_t len)
 {
 	char		*substr;
 	size_t		i;
@@ -78,9 +78,9 @@ char	*ft_substr(char *s, unsigned int start, size_t len)
 
 	if (!s)
 		return (NULL);
-	s_len = ft_strlen(s);
+	s_len = ft_gnl_strlen(s);
 	if (start >= s_len)
-		return (ft_strdup(""));
+		return (ft_gnl_strdup(""));
 	if (len > s_len - start)
 		len = s_len - start;
 	substr = malloc(len + 1);

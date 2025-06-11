@@ -6,7 +6,7 @@
 /*   By: hgutterr <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/11 23:56:09 by hgutterr          #+#    #+#             */
-/*   Updated: 2025/04/11 23:56:10 by hgutterr         ###   ########.fr       */
+/*   Updated: 2025/06/10 22:39:51 by hgutterr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,13 +36,11 @@ char	*ft_strjoin(char const *s1, char const *s2)
 	char	*newstr;
 	char	*s1_ptr;
 	char	*s2_ptr;
-	int		i;
 
 	if (!s1 || !s2)
 		return (NULL);
 	s1_ptr = (char *)s1;
 	s2_ptr = (char *)s2;
-	i = 0;
 	newstr = malloc(ft_strlen(s1_ptr) + ft_strlen(s2_ptr) + 1);
 	if (!newstr)
 		return (NULL);
