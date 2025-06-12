@@ -18,14 +18,14 @@ t_point	*project_point(t_point *p, t_fdf *fdf)
 	float	y;
 	float	z;
 
-	x = p->x * SCALE;
-	y = p->y * SCALE;
-	z = p->z * (SCALE / 7);
-	p->px = (x - y) * cos(ANGLE);
-	p->py = (x + y) * sin(ANGLE) - z;
+	x = p->x * fdf->scale;
+	y = p->y * fdf->scale;
+	z = p->z * (fdf->scale / 7);
+	p->px = (x - y) * cos(fdf->angle);
+	p->py = (x + y) * sin(fdf->angle) - z;
 
-	p->px += WIN_W / 2; //- ((fdf->map->width * SCALE * cos(ANGLE)) / 7);
-	//p->py += WIN_H / 2; //- ((fdf->map->height * SCALE * sin(ANGLE)) / 2);
+	p->px += WIN_W / 2 + fdf->movex; //- ((fdf->map->width * fdf->scale * cos(fdf->angle)) / 7);
+	p->py += WIN_H / 4 + fdf->movey; //- ((fdf->map->height * fdf->scale * sin(fdf->angle)) / 2);
 
 	return (p);
 }

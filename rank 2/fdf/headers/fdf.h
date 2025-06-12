@@ -6,7 +6,7 @@
 /*   By: hgutterr <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/04 13:04:11 by hgutterr          #+#    #+#             */
-/*   Updated: 2025/06/12 01:42:38 by hgutterr         ###   ########.fr       */
+/*   Updated: 2025/06/12 18:56:28 by hgutterr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,5 +45,13 @@ void	render_map(t_map *map, t_fdf *fdf);
 // project.c
 
 t_point	*project_point(t_point *p, t_fdf *fdf);
+
+// fdf.c
+
+int		key_hook(int keycode, void *param);
+void	re_mlx(t_fdf *fdf);
+void	put_instructions(t_fdf *fdf);
+void	ft_free(t_map **map, t_fdf *fdf);
+void	init_fdf(t_fdf *fdf, t_map *map);
 
 #endif

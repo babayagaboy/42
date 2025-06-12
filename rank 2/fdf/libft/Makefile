@@ -6,7 +6,7 @@
 #    By: hgutterr <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/04/08 16:55:10 by hgutterr          #+#    #+#              #
-#    Updated: 2025/04/08 16:55:12 by hgutterr         ###   ########.fr        #
+#    Updated: 2025/06/12 18:58:53 by hgutterr         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -40,28 +40,29 @@ BONUS_OBJS = $(BONUS_SRCS:%.c=$(OBJDIR)/%.o)
 NAME = libft.a
 
 all: $(NAME)
+	@echo "libft compiled!"
 
 $(OBJDIR)/%.o: %.c | $(OBJDIR)
-	$(CC) $(CFLAGS) -I $(DEPS) -c $< -o $@
+	@$(CC) $(CFLAGS) -I $(DEPS) -c $< -o $@
 
 $(OBJDIR):
-	mkdir -p $(OBJDIR)
+	@mkdir -p $(OBJDIR)
 
 $(NAME): $(OBJS)
-	ar rcs $(NAME) $(OBJS)
+	@ar rcs $(NAME) $(OBJS)
 
 bonus: .bonus
 
 .bonus: $(BONUS_OBJS) $(NAME)
 	@echo "Adding bonus objects to $(NAME)..."
-	ar r $(NAME) $(BONUS_OBJS)
+	@ar r $(NAME) $(BONUS_OBJS)
 	@touch .bonus
 
 clean:
-	rm -rf $(OBJDIR)
+	@rm -rf $(OBJDIR)
 
 fclean: clean
-	rm -f $(NAME) .bonus
+	@rm -f $(NAME) .bonus
 
 re: fclean all
 

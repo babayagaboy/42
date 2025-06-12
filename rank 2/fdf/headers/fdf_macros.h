@@ -6,7 +6,7 @@
 /*   By: hgutterr <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/11 18:15:35 by hgutterr          #+#    #+#             */
-/*   Updated: 2025/06/12 02:08:39 by hgutterr         ###   ########.fr       */
+/*   Updated: 2025/06/12 19:26:46 by hgutterr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,14 +17,20 @@
 #include "../headers/fdf.h"
 
 # define MAX_HEIGHT 1024
-# define WIN_W 1920
-# define WIN_H 1080
-# define SCALE 2.0
-# define ANGLE 0.523599 // 30 radians
+# define WIN_W 800
+# define WIN_H 600
 
 // keys
 
-# define ESC_KEY 65307
+#define KEY_ESC       65307
+#define KEY_PAGE_UP   65365
+#define KEY_PAGE_DOWN 65366
+#define KEY_UP        65362
+#define KEY_DOWN      65364
+#define KEY_LEFT      65361
+#define KEY_RIGHT     65363
+#define KEY_R         114 // minúsculo 'r'
+
 
 //colors
 

@@ -18,31 +18,34 @@
 
 typedef struct s_point
 {
-	int	x;
-	int	y;
-	int	z;
-	float	px;
-	float	py;
+	int			x;
+	int			y;
+	int			z;
+	float		px;
+	float		py;
 }	t_point;
 
 typedef struct s_map
 {
-	int		width;
-	int		height;
-	t_point **points;
+	int			width;
+	int			height;
+	t_point 	**points;
 }	t_map;
 
 typedef struct s_fdf 
 {
-	void	*mlx;
-	void	*win;
-	void	*img;
-	char	*addr;
-	int		bpp;
-	int		line_lenght;
-	int		endian;
-	t_map	*map;
+	void		*mlx;
+	void		*win;
+	void		*img;
+	char		*addr;
+	int			bpp;
+	int			line_lenght;
+	int			endian;
+	float		scale;
+	float		angle;
+	int			movex;
+	int			movey;
+	t_map		*map;
 }	t_fdf;
-
 
 #endif

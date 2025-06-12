@@ -13,7 +13,7 @@
 #include "../headers/fdf.h"
 #include "../headers/fdf_macros.h"
 
-static	int	count_words(char *line) // x value
+static	int	count_words(char *line)
 {
 	int	count;
 	count = 0;
@@ -31,6 +31,7 @@ static	int	count_words(char *line) // x value
 	}
 	return (count);
 }
+
 
 static	t_point	*parse_line(char *line, int y)
 {
