@@ -16,8 +16,11 @@
 
 int	key_hook(int keycode, void *param)
 {
+	t_fdf	*fdf;
+
+	fdf = (t_fdf *)param;
 	if (keycode == ESC_KEY)
-		exit(0);
+		mlx_loop_end(fdf->mlx);
 	return (0);
 }
 
@@ -25,14 +28,26 @@ void	ft_free(t_map **map, t_fdf *fdf)
 {
 	int	i;
 
-	i = 0;
-	while (i < (*map)->height)
-		free((*map)->points[i++]);
-	free((*map)->points);
-	free(*map);
-	mlx_destroy_image(fdf->mlx, fdf->img);
-	mlx_destroy_display(fdf->mlx);
+	if (map && *map)
+	{
+		i = 0;
+		while (i < (*map)->height)
+			free((*map)->points[i++]);
+		free((*map)->points);
+		free(*map);
+	}
+
+	if (fdf && fdf->mlx)
+	{
+		if (fdf->img)
+			mlx_destroy_image(fdf->mlx, fdf->img);
+		if (fdf->win)
+			mlx_destroy_window(fdf->mlx, fdf->win);
+		mlx_destroy_display(fdf->mlx);
+		free(fdf->mlx);
+	}
 }
+
 
 void	init_fdf(t_fdf *fdf, t_map *map)
 {
@@ -62,7 +77,7 @@ int	main(int argc, char **argv)
 	init_fdf(&fdf, map);
 	render_map(map, &fdf);
 	mlx_put_image_to_window(fdf.mlx, fdf.win, fdf.img, 0, 0);
-	mlx_key_hook(fdf.win, key_hook, NULL);
+	mlx_key_hook(fdf.win, key_hook, &fdf);
 	mlx_loop(fdf.mlx);
 	ft_free(&map, &fdf);
 	return (0);
