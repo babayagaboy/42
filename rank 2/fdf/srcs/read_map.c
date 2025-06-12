@@ -65,6 +65,8 @@ t_map	*read_map(int fd)
 
 	map = malloc(sizeof(t_map));
 	map->points = malloc(sizeof(t_point *) * MAX_HEIGHT);
+	if (!map->points)
+		return (NULL);
 	map->height = 0;
 	line = get_next_line(fd);
 

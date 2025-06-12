@@ -6,7 +6,7 @@
 /*   By: hgutterr <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/04 13:04:11 by hgutterr          #+#    #+#             */
-/*   Updated: 2025/06/11 18:09:11 by hgutterr         ###   ########.fr       */
+/*   Updated: 2025/06/12 01:42:38 by hgutterr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,8 @@
 # include "../mlx/mlx.h"
 # include "../gnl/get_next_line.h"
 # include "../libft/libft.h"
+#include "../headers/fdf_macros.h"
+#include "../headers/fdf_structs.h"
 # include <math.h>
 # include <stdio.h>
 # include <string.h>
@@ -25,21 +27,23 @@
 # include <limits.h>
 # include <stdint.h>
 
-typedef struct s_point {
-	int	x;
-	int	y;
-	int	z;
-}	t_point;
+// draw.c
 
-typedef struct s_map
-{
-	t_point **points;
-	int		width;
-	int		height;
-}	t_map;
+void	put_pixel(t_fdf *fdf, int x, int y, int color);
+void	draw_line(t_fdf *fdf, t_point *pA, t_point *pB);
+
+// read_map.c
 
 static	int	count_words(char *line);
 static	t_point	*parse_line(char *line, int y);
 t_map	*read_map(int fd);
+
+// render.c
+
+void	render_map(t_map *map, t_fdf *fdf);
+
+// project.c
+
+t_point	*project_point(t_point *p, t_fdf *fdf);
 
 #endif
