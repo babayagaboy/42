@@ -6,7 +6,7 @@
 /*   By: hgutterr <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/04 13:04:11 by hgutterr          #+#    #+#             */
-/*   Updated: 2025/06/12 18:56:28 by hgutterr         ###   ########.fr       */
+/*   Updated: 2025/06/13 23:19:09 by hgutterr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,5 +53,12 @@ void	re_mlx(t_fdf *fdf);
 void	put_instructions(t_fdf *fdf);
 void	ft_free(t_map **map, t_fdf *fdf);
 void	init_fdf(t_fdf *fdf, t_map *map);
+
+// colors.c
+
+int	get_color(int z);
+int interpolate(int start, int end, float percentage);
+int get_gradiente(int start_c, int end_c, float percentage);
+
 
 #endif

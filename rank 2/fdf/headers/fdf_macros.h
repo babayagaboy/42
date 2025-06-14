@@ -6,7 +6,7 @@
 /*   By: hgutterr <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/11 18:15:35 by hgutterr          #+#    #+#             */
-/*   Updated: 2025/06/12 19:26:46 by hgutterr         ###   ########.fr       */
+/*   Updated: 2025/06/13 19:38:28 by hgutterr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,8 @@
 #include "../headers/fdf.h"
 
 # define MAX_HEIGHT 1024
-# define WIN_W 800
-# define WIN_H 600
+# define WIN_W 1200
+# define WIN_H 800
 
 // keys
 

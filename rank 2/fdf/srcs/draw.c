@@ -24,16 +24,20 @@ void	put_pixel(t_fdf *fdf, int x, int y, int color)
 
 void	draw_line(t_fdf *fdf, t_point *pA, t_point *pB)
 {
-	int	xA;
-	int	yA;
-	int	xB;
-	int	yB;
-	int	dx; // diference in xA and xB 
-	int	dy; // diference in yA and yB
-	int	sx; // direction x
-	int	sy; // direction y
-	int	err;
-	int e2;
+	int		xA;
+	int		yA;
+	int		xB;
+	int		yB;
+	int		dx; // diference in xA and xB 
+	int		dy; // diference in yA and yB
+	int		sx; // direction x
+	int		sy; // direction y
+	int		err;
+	int		e2;
+	int		i;
+	int		steps;
+	int		color;
+	float	percentage;
 
 	xA = (int)pA->px;
 	yA = (int)pA->py;
@@ -53,9 +57,18 @@ void	draw_line(t_fdf *fdf, t_point *pA, t_point *pB)
 		sy = -1;
 	
 	err = dx - dy;
+	if (dx > dy)
+		steps = dx;
+	else
+		steps = dy;
 	while (1)
 	{
-		put_pixel(fdf, xA, yA, WHITE);
+		if (steps == 0)
+			percentage = 0.0;
+		else
+			percentage = (float)i / steps;
+		color = get_gradiente(pA->color, pB->color, percentage);
+		put_pixel(fdf, xA, yA, color);
 		if (xA == xB && yA == yB)
 			break;
 		e2 = 2 * err;
@@ -69,5 +82,6 @@ void	draw_line(t_fdf *fdf, t_point *pA, t_point *pB)
 			err += dx;
 			yA += sy;
 		}
+		i++;
 	}
 }

@@ -11,8 +11,8 @@
 /* ************************************************************************** */
 
 
-#ifndef FDF_STRUCTS
-# define FDF_STRUCTS
+#ifndef FDF_STRUCTS_H
+# define FDF_STRUCTS_H
 
 #include "../headers/fdf.h"
 
@@ -23,6 +23,7 @@ typedef struct s_point
 	int			z;
 	float		px;
 	float		py;
+	int			color;
 }	t_point;
 
 typedef struct s_map

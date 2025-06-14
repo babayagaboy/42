@@ -51,6 +51,7 @@ static	t_point	*parse_line(char *line, int y)
 		row[x].x = x;
 		row[x].y = y;
 		row[x].z = ft_atoi(split[x]);
+		row[x].color = get_color(row[x].z);
 		free(split[x]);
 		x++;
 	}

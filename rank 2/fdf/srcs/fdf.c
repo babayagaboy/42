@@ -25,23 +25,22 @@ int		key_hook(int keycode, void *param)
 		return (0);
 	}
 	if (keycode == KEY_PAGE_UP)
-		fdf->scale += 1;
+		fdf->scale += .5;
 	if (keycode == KEY_PAGE_DOWN)
-		fdf->scale -= 1;
+		fdf->scale -= .5;
 	if (keycode == KEY_R)
 	{
-		fdf->movex = 0;
-		fdf->movey = 0;
+		fdf->movey, fdf->movex = 0;
 		fdf->scale = 20;
 	}
 	if (keycode == KEY_UP)
-		fdf->movey -= 10;
+		fdf->movey -= 20;
 	if (keycode == KEY_DOWN)
-		fdf->movey += 10;
+		fdf->movey += 20;
 	if (keycode == KEY_LEFT)
-		fdf->movex -= 10;
+		fdf->movex -= 20;
 	if (keycode == KEY_RIGHT)
-		fdf->movex += 10;
+		fdf->movex += 20;
 	re_mlx(fdf);
 	return (0);
 }

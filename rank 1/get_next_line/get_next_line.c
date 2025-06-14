@@ -6,7 +6,7 @@
 /*   By: hgutterr <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/24 16:45:44 by hgutterr          #+#    #+#             */
-/*   Updated: 2025/05/12 18:33:05 by hgutterr         ###   ########.fr       */
+/*   Updated: 2025/06/14 00:08:04 by hgutterr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -126,16 +126,8 @@ int	main(int argc, char **argv)
 		s1 = get_next_line(fd);
 		if (!s1)
 			break ;
-<<<<<<< HEAD
 		printf("%d: %s",i++, s1);
 		free(s1);
 	}
 	close(fd);
 }
-=======
-		printf("%d:%s", ++i, s1);
-		free(s1);
-	}
-	close(fd);
-} */
->>>>>>> ce922d897bba4758684215411f0cce5931ce8093
