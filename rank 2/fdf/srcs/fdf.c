@@ -34,13 +34,13 @@ int		key_hook(int keycode, void *param)
 		fdf->scale = 20;
 	}
 	if (keycode == KEY_UP)
-		fdf->movey -= 20;
-	if (keycode == KEY_DOWN)
 		fdf->movey += 20;
+	if (keycode == KEY_DOWN)
+		fdf->movey -= 20;
 	if (keycode == KEY_LEFT)
-		fdf->movex -= 20;
-	if (keycode == KEY_RIGHT)
 		fdf->movex += 20;
+	if (keycode == KEY_RIGHT)
+		fdf->movex -= 20;
 	re_mlx(fdf);
 	return (0);
 }
