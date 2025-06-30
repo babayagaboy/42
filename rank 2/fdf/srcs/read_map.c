@@ -39,6 +39,8 @@ static	t_point	*parse_line(char *line, int y)
 	char	**split;
 	int		width;
 	int		x;
+	int		tmpmaxz;
+	int		tmpminz;
 
 	split = ft_split(line, ' ');
 	width = 0;

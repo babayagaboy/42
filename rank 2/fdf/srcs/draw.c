@@ -67,8 +67,8 @@ void	draw_line(t_fdf *fdf, t_point *pA, t_point *pB)
 			percentage = 0.0;
 		else
 			percentage = (float)i / steps;
-		color = get_gradiente(pA->color, pB->color, percentage);
-		put_pixel(fdf, xA, yA, color);
+		//color = get_gradiente(pA->color, pB->color, percentage);
+		put_pixel(fdf, xA, yA, WHITE);
 		if (xA == xB && yA == yB)
 			break;
 		e2 = 2 * err;
