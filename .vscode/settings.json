@@ -3,6 +3,7 @@
 		"math.h": "c",
 		"limits.h": "c",
 		"fdf.h": "c",
-		"fdf_macros.h": "c"
+		"fdf_macros.h": "c",
+		"minitalk.h": "c"
 	}
 }
