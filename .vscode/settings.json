@@ -4,6 +4,8 @@
 		"limits.h": "c",
 		"fdf.h": "c",
 		"fdf_macros.h": "c",
-		"minitalk.h": "c"
-	}
+		"minitalk.h": "c",
+		"signal.h": "c"
+	},
+	"C_Cpp.errorSquiggles": "disabled"
 }

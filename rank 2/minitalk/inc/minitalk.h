@@ -19,4 +19,7 @@
 # include <signal.h>
 # include <stdbool.h>
 
+# include "../libft/inc/ft_printf.h"
+# include "../libft/inc/libft.h"
+
 #endif

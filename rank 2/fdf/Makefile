@@ -24,6 +24,7 @@ LIBFT_DIR = libft
 LIBFT_LIB = $(LIBFT_DIR)/libft.a
 LIBFT_INC = -I$(LIBFT_DIR)
 
+
 all: $(LIBFT_LIB) $(NAME)
 	@echo "Ready!"
 
