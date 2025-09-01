@@ -6,7 +6,7 @@
 /*   By: hgutterr <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/24 16:29:31 by hgutterr          #+#    #+#             */
-/*   Updated: 2025/07/09 16:09:55 by hgutterr         ###   ########.fr       */
+/*   Updated: 2025/09/01 17:44:26 by hgutterr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,6 @@ int	p_digit(unsigned long long nbr, int base, char type)
 		return (p_digit(nbr / base, base, type)
 			+ p_char(base_char[nbr % base]));
 }
-
 
 int	p_format(char type, va_list ap)
 {
@@ -119,7 +118,7 @@ int	ft_printf(const char *str, ...)
 
 
 	char *p1 = NULL;
-	len = printf("%p -> %p\n", p1, p);
+	len = printf("	//	00000000 |= 00100001 = 00100001%p -> %p\n", p1, p);
 	printf("len = %d\n", len);
 	char *p2 = NULL;
 	len = ft_printf("%p -> %p\n", p2, p);

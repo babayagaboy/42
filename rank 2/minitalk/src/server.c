@@ -18,7 +18,7 @@ void	ft_handler(int signal)
 	static int	i;
 
 	if (signal == SIGUSR1)
-		i |= (0x01 << bit);	//	00000000 |= 00100001 = 00100001
+		i |= (0x01 << bit);
 	bit++;
 	if (bit == 8)
 	{

@@ -19,10 +19,10 @@ void	ft_send_bits(int pid, char i)
 	bit = 0;
 	while (bit < 8)
 	{
-		if ((i & (0x01 << bit)) != 0) // 00001001 & bit != 0 = 1__1____ 
-			kill(pid, SIGUSR1); // send 1
-		else	//	_00_0000
-			kill(pid, SIGUSR2); // send 0
+		if ((i & (0x01 << bit)) != 0)
+			kill(pid, SIGUSR1);
+		else
+			kill(pid, SIGUSR2);
 		usleep(100);
 		bit++;
 	}
