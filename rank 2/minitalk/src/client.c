@@ -11,44 +11,53 @@
 /* ************************************************************************** */
 
 #include "../inc/minitalk.h"
+#include <signal.h>
 
-void	ft_send_bits(int pid, char i)
+static void	ft_ack_handler(int sig)
+{
+	(void) sig;
+}
+
+static void	ft_send_bits(int pid, unsigned char c, sigset_t *old)
 {
 	int	bit;
 
 	bit = 0;
 	while (bit < 8)
 	{
-		if ((i & (0x01 << bit)) != 0)
+		if ((c & (0x01 << bit)) != 0)
 			kill(pid, SIGUSR1);
 		else
 			kill(pid, SIGUSR2);
-		usleep(100);
+		sigsuspend(old);
 		bit++;
 	}
 }
 
 int	main(int argc, char **argv)
 {
-	int	pid;
-	int	i;
+	struct sigaction	sa;
+	sigset_t			old;
+	sigset_t			block;
+	int					pid;
+	int					i;
 
 	i = 0;
-	if (argc == 3)
+	sigemptyset(&block);
+	sigaddset(&block, SIGUSR1);
+	sigprocmask(SIG_BLOCK, &block, &old);
+	sa.sa_handler = ft_ack_handler;
+	sigemptyset(&sa.sa_mask);
+	sa.sa_flags = 0;
+	sigaction(SIGUSR1, &sa, NULL);
+	if (argc != 3)
+		return (ft_printf("\033[91mError: wrong format.\033[0m\n"), 1);
+	pid = ft_atoi(argv[1]);
+	while (argv[2][i] != '\0')
 	{
-		pid = ft_atoi(argv[1]);
-		while (argv[2][i] != '\0')
-		{
-			ft_send_bits(pid, argv[2][i]);
-			i++;
-		}
-		ft_send_bits(pid, '\n');
+		ft_send_bits(pid, argv[2][i], &old);
+		i++;
 	}
-	else
-	{
-		ft_printf("\033[91mError: wrong format.\033[0m\n");
-		ft_printf("\033[33mTry: ./client <PID> <MESSAGE>\033[0m\n");
-		return (1);
-	}
+	ft_send_bits(pid, '\n', &old);
 	return (0);
 }
