@@ -142,8 +142,8 @@ int	main(int argc, char **argv)
 
 
 
+/*
 
-/* 
 	void	*mlx;
 	void	*win;
 	int		winx = 800;
