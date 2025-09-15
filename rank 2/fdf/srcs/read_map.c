@@ -10,14 +10,13 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../headers/fdf.h"
-#include "../headers/fdf_macros.h"
+#include "../inc/fdf.h"
 
 static	int	count_words(char *line)
 {
 	int	count;
-	count = 0;
 
+	count = 0;
 	while (*line)
 	{
 		while (*line == ' ')
@@ -31,7 +30,6 @@ static	int	count_words(char *line)
 	}
 	return (count);
 }
-
 
 static	t_point	*parse_line(char *line, int y)
 {
@@ -61,7 +59,6 @@ static	t_point	*parse_line(char *line, int y)
 	return (row);
 }
 
-
 t_map	*read_map(int fd)
 {
 	t_map	*map;
@@ -73,7 +70,6 @@ t_map	*read_map(int fd)
 		return (NULL);
 	map->height = 0;
 	line = get_next_line(fd);
-
 	while (line)
 	{
 		if (map->height == 0)
@@ -86,4 +82,3 @@ t_map	*read_map(int fd)
 	close(fd);
 	return (map);
 }
-

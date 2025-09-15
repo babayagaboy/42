@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../headers/fdf.h"
+#include "../inc/fdf.h"
 
 int	get_color(int z)
 {
@@ -21,15 +21,19 @@ int	get_color(int z)
 	return (BLUE);
 }
 
-int interpolate(int start, int end, float percentage)
+int	interpolate(int start, int end, float percentage)
 {
 	return ((int)((1 - percentage) * start + percentage * end));
 }
 
-int get_gradiente(int start_c, int end_c, float percentage)
+int	get_gradiente(int start_c, int end_c, float percentage)
 {
-	int	r = interpolate((start_c >> 16) & 0xFF, (end_c >> 16) & 0xFF, percentage);
-	int	g = interpolate((start_c >> 8) & 0xFF, (end_c >> 8) & 0xFF, percentage);
-	int	b = interpolate(start_c & 0xFF, end_c & 0xFF, percentage);
+	int	r;
+	int	g;
+	int	b;
+
+	r = interpolate((start_c >> 16) & 0xFF, (end_c >> 16) & 0xFF, percentage);
+	g = interpolate((start_c >> 8) & 0xFF, (end_c >> 8) & 0xFF, percentage);
+	b = interpolate(start_c & 0xFF, end_c & 0xFF, percentage);
 	return ((r << 16) | (g << 8) | b);
 }

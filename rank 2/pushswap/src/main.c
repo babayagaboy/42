@@ -1,29 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   project.c                                          :+:      :+:    :+:   */
+/*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hgutterr <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/06/12 00:43:31 by hgutterr          #+#    #+#             */
-/*   Updated: 2025/06/12 00:43:31 by hgutterr         ###   ########.fr       */
+/*   Created: 2025/09/15 19:06:04 by hgutterr          #+#    #+#             */
+/*   Updated: 2025/09/15 19:06:04 by hgutterr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../inc/fdf.h"
+#include "../inc/pushswap.h"
 
-t_point	*project_point(t_point *p, t_fdf *fdf)
+int	main(int argc, char **argv)
 {
-	float	x;
-	float	y;
-	float	z;
+	t_stack *a;
+	//t_stack *b;
 
-	x = p->x * fdf->scale;
-	y = p->y * fdf->scale;
-	z = p->z * (fdf->scale / 7);
-	p->px = (x - y) * cos(fdf->angle);
-	p->py = (x + y) * sin(fdf->angle) - z;
-	p->px += WIN_W / 2 + fdf->movex;
-	p->py += WIN_H / 4 + fdf->movey;
-	return (p);
+	a = NULL;
+	//b = NULL;
+	if (argc == 1 || (argc == 2 && argv[1][0] == 0))
+		return (1);
+	else if (argc == 2)
+		argv = ft_split(argv[1], 32);
+	stack_innit(&a, argv + 1);
+	while (a)
+	{
+		ft_printf("%p: %d\n", a, a->value);
+		a = a->next_node;
+	}	
 }

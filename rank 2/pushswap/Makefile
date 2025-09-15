@@ -5,8 +5,8 @@
 #                                                     +:+ +:+         +:+      #
 #    By: hgutterr <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2025/09/15 20:10:43 by hgutterr          #+#    #+#              #
-#    Updated: 2025/09/15 20:10:43 by hgutterr         ###   ########.fr        #
+#    Created: 2025/09/15 20:06:24 by hgutterr          #+#    #+#              #
+#    Updated: 2025/09/15 20:06:24 by hgutterr         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,39 +18,36 @@ OBJDIR = obj
 LIBFT_DIR = libft
 LIBFT_A = $(LIBFT_DIR)/libft.a
 
-NAME_CLIENT = client
-NAME_SERVER = server
+NAME = pushswap
 
-SRCS_CLIENT = $(SCRDIR)/client.c
-SRCS_SERVER = $(SCRDIR)/server.c
+SRCS = \
+	$(SCRDIR)/main.c \
+	$(SCRDIR)/stack_innit.c
 
-OBJS_CLIENT = $(SRCS_CLIENT:.c=.o)
-OBJS_SERVER = $(SRCS_SERVER:.c=.o)
+OBJS = $(SRCS:$(SCRDIR)/%.c=$(OBJDIR)/%.o)
 
-$(SCRDIR)/%.o: $(SCRDIR)/%.c
+$(OBJDIR)/%.o: $(SCRDIR)/%.c
+	@mkdir -p $(OBJDIR)
 	$(CC) $(CFLAGS) -c $< -o $@
 
-all: $(LIBFT_A) $(NAME_CLIENT) $(NAME_SERVER)
+all: $(LIBFT_A) $(NAME)
 
 $(LIBFT_A):
 	@$(MAKE) -C $(LIBFT_DIR)
 
-$(NAME_CLIENT): $(OBJS_CLIENT) $(LIBFT_A)
-	$(CC) $(CFLAGS) -o $(NAME_CLIENT) $(OBJS_CLIENT) -L$(LIBFT_DIR) -lft
-
-$(NAME_SERVER): $(OBJS_SERVER) $(LIBFT_A)
-	$(CC) $(CFLAGS) -o $(NAME_SERVER) $(OBJS_SERVER) -L$(LIBFT_DIR) -lft
+$(NAME): $(OBJS) $(LIBFT_A)
+	$(CC) $(CFLAGS) -o $(NAME) $(OBJS) -L$(LIBFT_DIR) -lft
 
 %.o: %.c
 	$(CC) $(CFLAGS) -c $< -o $@
 
 clean:
-	@rm -f $(OBJS_CLIENT) $(OBJS_SERVER)
+	@rm -f $(OBJS)
 	@$(MAKE) -C $(LIBFT_DIR) clean
 	@echo "Objects removed"
 
 fclean: clean
-	@rm -f $(NAME_CLIENT) $(NAME_SERVER)
+	@rm -f $(NAME)
 	@$(MAKE) -C $(LIBFT_DIR) fclean
 	@echo "Cleanup complete"
 

@@ -5,7 +5,9 @@
 		"fdf.h": "c",
 		"fdf_macros.h": "c",
 		"minitalk.h": "c",
-		"signal.h": "c"
+		"signal.h": "c",
+		"fdf_structs.h": "c",
+		"pushswap.h": "c"
 	},
 	"C_Cpp.errorSquiggles": "disabled"
 }
