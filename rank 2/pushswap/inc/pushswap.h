@@ -29,8 +29,15 @@ typedef struct s_stack
 // stack_innit.c
 
 int		ft_check_repetition(t_stack *a, int nbr);
-t_stack	*ft_lastnode(t_stack *lst);
 void	ft_connect_node(t_stack **a, int nbr);
 void	stack_innit(t_stack **a, char **argv);
+
+// stack_utils.c
+
+t_stack	*ft_lastnode(t_stack *lst);
+
+// rotate_cmd.c
+
+void	rotate_cmd(t_stack **a);
 
 #endif

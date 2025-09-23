@@ -25,15 +25,6 @@ int		ft_check_repetition(t_stack *a, int nbr)
 	return(0);
 }
 
-t_stack	*ft_lastnode(t_stack *ptr)
-{
-	if (!ptr)
-		return (NULL);
-	while (ptr->next_node)
-		ptr = ptr->next_node;
-	return (ptr);
-}
-
 void	ft_connect_node(t_stack **a, int nbr)
 {
 	t_stack *node;

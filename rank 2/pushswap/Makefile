@@ -22,7 +22,9 @@ NAME = pushswap
 
 SRCS = \
 	$(SCRDIR)/main.c \
-	$(SCRDIR)/stack_innit.c
+	$(SCRDIR)/stack_innit.c \
+	$(SCRDIR)/stack_utils.c \
+	$(SCRDIR)/rotate_cmd.c
 
 OBJS = $(SRCS:$(SCRDIR)/%.c=$(OBJDIR)/%.o)
 
