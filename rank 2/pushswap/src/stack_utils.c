@@ -12,11 +12,28 @@
 
 #include "../inc/pushswap.h"
 
-t_stack	*ft_lastnode(t_stack *ptr)
+t_stack	*ft_lastnode(t_stack *stack)
 {
-	if (!ptr)
+	if (!stack)
 		return (NULL);
-	while (ptr->next_node)
+	while (stack->next_node)
+		stack = stack->next_node;
+	return (stack);
+}
+
+int	ft_stacksize(t_stack *stack)
+{
+	int		size;
+	t_stack	*ptr;
+
+	if (!stack)
+		return (0);
+	size = 0;
+	ptr = stack;
+	while (ptr)
+	{
 		ptr = ptr->next_node;
-	return (ptr);
+		size++;
+	}
+	return (size);
 }

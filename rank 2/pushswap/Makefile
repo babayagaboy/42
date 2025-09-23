@@ -24,13 +24,14 @@ SRCS = \
 	$(SCRDIR)/main.c \
 	$(SCRDIR)/stack_innit.c \
 	$(SCRDIR)/stack_utils.c \
-	$(SCRDIR)/rotate_cmd.c
+	$(SCRDIR)/rotate_cmd.c \
+	$(SCRDIR)/swap_cmp.c
 
 OBJS = $(SRCS:$(SCRDIR)/%.c=$(OBJDIR)/%.o)
 
 $(OBJDIR)/%.o: $(SCRDIR)/%.c
 	@mkdir -p $(OBJDIR)
-	$(CC) $(CFLAGS) -c $< -o $@
+	@$(CC) $(CFLAGS) -c $< -o $@
 
 all: $(LIBFT_A) $(NAME)
 
@@ -38,10 +39,10 @@ $(LIBFT_A):
 	@$(MAKE) -C $(LIBFT_DIR)
 
 $(NAME): $(OBJS) $(LIBFT_A)
-	$(CC) $(CFLAGS) -o $(NAME) $(OBJS) -L$(LIBFT_DIR) -lft
+	@$(CC) $(CFLAGS) -o $(NAME) $(OBJS) -L$(LIBFT_DIR) -lft
 
 %.o: %.c
-	$(CC) $(CFLAGS) -c $< -o $@
+	@$(CC) $(CFLAGS) -c $< -o $@
 
 clean:
 	@rm -f $(OBJS)

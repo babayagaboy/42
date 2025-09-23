@@ -34,10 +34,19 @@ void	stack_innit(t_stack **a, char **argv);
 
 // stack_utils.c
 
-t_stack	*ft_lastnode(t_stack *lst);
+t_stack	*ft_lastnode(t_stack *stack);
+int	ft_stacksize(t_stack *stack);
 
 // rotate_cmd.c
 
-void	rotate_cmd(t_stack **a);
+void	rotate_cmd(t_stack **stack);
+
+// reverse_rotate_cmd.c
+
+void reverse_rotate_cmd(t_stack **stack);
+
+// swap_cmp.c
+
+void	swap_cmd(t_stack **stack);
 
 #endif

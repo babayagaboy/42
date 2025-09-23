@@ -12,8 +12,18 @@
 
 #include "../inc/pushswap.h"
 
-void	rotate_cmd(t_stack *a)
+void rotate_cmd(t_stack **stack)
 {
-	t_stack *temp_node;
+	t_stack *first_node;
+	t_stack *last_node;
 
+	if (!stack || !(*stack) || !(*stack)->next_node)
+		return ;
+	first_node = *stack;
+	last_node = ft_lastnode(*stack);
+	*stack = first_node->next_node;
+	(*stack)->prev_node = NULL;
+	last_node->next_node = first_node;
+	first_node->prev_node = last_node;
+	first_node->next_node = NULL;
 }

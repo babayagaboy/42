@@ -25,11 +25,32 @@ int	main(int argc, char **argv)
 		argv = ft_split(argv[1], 32);
 	stack_innit(&a, argv + 1);
 
+
+
+
+	t_stack *pointer;
+
+	pointer = a;
 	int i = 0;
-	while (a)
+	int size = ft_stacksize(a);
+
+	while (i < size)
 	{
-		ft_printf("%d node ==%p== : %d\n", i, a, a->value);
-		a = a->next_node;
+		ft_printf("%d node ==%p== : %d\n", i, pointer, pointer->value);
+		pointer = pointer->next_node;
+		i++;
+	}
+
+	ft_printf("---- after swap ----\n");
+	
+	rotate_cmd(&a);
+
+	pointer = a;
+	i = 0;
+	while (i < size)
+	{
+		ft_printf("%d node ==%p== : %d\n", i, pointer, pointer->value);
+		pointer = pointer->next_node;
 		i++;
 	}
 }
