@@ -49,4 +49,8 @@ void reverse_rotate_cmd(t_stack **stack);
 
 void	swap_cmd(t_stack **stack);
 
+// free_stack.c
+
+void	free_stack(t_stack **stack);
+
 #endif

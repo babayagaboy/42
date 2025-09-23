@@ -53,4 +53,6 @@ int	main(int argc, char **argv)
 		pointer = pointer->next_node;
 		i++;
 	}
+	free_stack(&a);
+	return (0);
 }

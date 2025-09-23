@@ -25,7 +25,10 @@ SRCS = \
 	$(SCRDIR)/stack_innit.c \
 	$(SCRDIR)/stack_utils.c \
 	$(SCRDIR)/rotate_cmd.c \
-	$(SCRDIR)/swap_cmp.c
+	$(SCRDIR)/swap_cmp.c \
+	$(SCRDIR)/reverse_rotate_cmd.c \
+	$(SCRDIR)/free_stack.c
+
 
 OBJS = $(SRCS:$(SCRDIR)/%.c=$(OBJDIR)/%.o)
 
