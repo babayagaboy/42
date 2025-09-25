@@ -30,3 +30,4 @@ int	main(int argc, char **argv)
 	free_stack(&a);
 	return (0);
 }
+// quick sort or binary radix sort for larger sets
