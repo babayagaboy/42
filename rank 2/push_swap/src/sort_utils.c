@@ -12,44 +12,34 @@
 
 #include "../inc/push_swap.h"
 
-void index_stack(t_stack **stack)
+void    quick_sort_array(int *arr, int low, int high)
 {
-	t_stack *ptr;
-	t_stack *current;
-	int index;
+    int i;
+    int j;
+    int pivot;
+    int tmp;
 
-	ptr = *stack;
-	while (ptr)
-	{
-		index = 0;
-		current = *stack;
-		while (current)
-		{
-			if (ptr->value > current->value)
-				index++;
-			current = current->next_node;
-		}
-		ptr->index = index;
-		ptr = ptr->next_node;
-	}
-}
-
-int get_chunk_size(int stack_len)
-{
-	if (stack_len <= 100)
-		return stack_len / 5; // 5 chunks
-	else
-		return stack_len / 11; // ~45 chunks for 500
-}
-
-int find_max_index(t_stack *b)
-{
-    int max = b->index;
-    while (b)
+    if (low >= high)
+        return ;
+    pivot = arr[high];
+    i = low - 1;
+    j = low;
+    while (j < high)
     {
-        if (b->index > max)
-            max = b->index;
-        b = b->next_node;
+        if (arr[j] <= pivot)
+        {
+            i++;
+            tmp = arr[i];
+            arr[i] = arr[j];
+            arr[j] = tmp;
+        }
+        j++;
     }
-    return max;
+    tmp = arr[i + 1];
+    arr[i + 1] = arr[high];
+    arr[high] = tmp;
+    quick_sort_array(arr, low, i);
+    quick_sort_array(arr, i + 2, high);
 }
+
+

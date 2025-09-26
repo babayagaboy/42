@@ -62,6 +62,7 @@ void push_cmd(t_stack **from, t_stack **to, char *mode);
 // sort_three.c
 
 void sort_three(t_stack **a);
+void sort_small_b(t_stack **a, t_stack **b, int len);
 
 // sort_five.c
 
@@ -70,14 +71,12 @@ void sort_five(t_stack **a, t_stack **b);
 // sort.c
 
 void sort(t_stack **a, t_stack **b);
-void chunk_sort(t_stack **a, t_stack **b);
-void push_chunks_to_b(t_stack **a, t_stack **b, int chunk_size, int stack_len);
-void push_back_to_a(t_stack **a, t_stack **b);
+int  get_pivot(t_stack *stack, int len);
+void quick_sort_stack_a(t_stack **a, t_stack **b, int len);
+void        quick_sort_stack_b(t_stack **a, t_stack **b, int len);
 
 // sort_utils.c
 
-void index_stack(t_stack **stack);
-int get_chunk_size(int stack_len);
-int find_max_index(t_stack *b);
+void    quick_sort_array(int *arr, int low, int high);
 
 #endif

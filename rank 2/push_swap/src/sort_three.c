@@ -40,3 +40,25 @@ void sort_three(t_stack **a)
 	else if(first < second && second > third && first > third)
 		reverse_rotate_cmd(a, "a");
 }
+void sort_small_b(t_stack **a, t_stack **b, int len)
+{
+    if (len == 1)
+        push_cmd(b, a, "a");
+    else if (len == 2)
+    {
+        if ((*b)->value < (*b)->next_node->value)
+            swap_cmd(b, "b");
+        push_cmd(b, a, "a");
+        push_cmd(b, a, "a");
+    }
+    else if (len == 3)
+    {
+        if ((*b)->value < (*b)->next_node->value)
+            swap_cmd(b, "b");
+        push_cmd(b, a, "a");
+        if ((*b)->value < (*b)->next_node->value)
+            swap_cmd(b, "b");
+        push_cmd(b, a, "a");
+        push_cmd(b, a, "a");
+    }
+}

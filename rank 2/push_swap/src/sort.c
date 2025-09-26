@@ -14,66 +14,111 @@
 
 void sort(t_stack **a, t_stack **b)
 {
-	int size;
+    int size;
 
-	size = ft_stacksize(*a);
-	if (is_sorted(*a))
-		return ;
-	if (size <= 3)
-		sort_three(a);
-	else if (size <= 5)
-		sort_five(a, b);
-	else
-	{
-		index_stack(a);
-		chunk_sort(a, b);
-	}
+    size = ft_stacksize(*a);
+    if (is_sorted(*a))
+        return ;
+    if (size <= 3)
+        sort_three(a);
+    else
+        quick_sort_stack_a(a, b, size);
 }
 
-void chunk_sort(t_stack **a, t_stack **b)
+int  get_pivot(t_stack *stack, int len)
 {
-	int stack_len;
-	int chunk_size;
+    t_stack *tmp;
+    int     *arr;
+    int     i;
+    int     pivot;
 
-	stack_len = ft_stacksize(*a);
-	chunk_size = get_chunk_size(stack_len);
-	push_chunks_to_b(a, b, chunk_size, stack_len);
-	push_back_to_a(a, b);
+    arr = malloc(sizeof(int) * len);
+    if (!arr)
+        return (0);
+    tmp = stack;
+    i = 0;
+    while (tmp && i < len)
+    {
+        arr[i++] = tmp->value;
+        tmp = tmp->next_node;
+    }
+    quick_sort_array(arr, 0, len - 1);
+    pivot = arr[len / 2];
+    free(arr);
+    return (pivot);
 }
 
-void push_chunks_to_b(t_stack **a, t_stack **b, int chunk_size, int stack_len)
+void quick_sort_stack_a(t_stack **a, t_stack **b, int len)
 {
-    int chunk_start = 0;
-    int chunk_end = chunk_size;
+    int pivot;
     int i;
+    int pushed;
+    int ra_count;
 
-    while (chunk_start < stack_len)
+    if (len <= 3)
     {
-        i = 0;
-        while (i < stack_len && *a)
-        {
-            if ((*a)->index >= chunk_start && (*a)->index < chunk_end)
-                push_cmd(a, b, "b");
-            else
-                rotate_cmd(a, "a");
-            i++;
-        }
-        chunk_start += chunk_size;
-        chunk_end += chunk_size;
-        if (chunk_end > stack_len)
-            chunk_end = stack_len;
+        if (len == 2 && (*a)->value > (*a)->next_node->value)
+            swap_cmd(a, "a");
+        else if (len == 3)
+            sort_three(a);
+        return ;
     }
+    pivot = get_pivot(*a, len);
+    i = 0;
+    pushed = 0;
+    ra_count = 0;
+    while (i < len)
+    {
+        if ((*a)->value < pivot)
+        {
+            push_cmd(a, b, "b");
+            pushed++;
+        }
+        else
+        {
+            rotate_cmd(a, "a");
+            ra_count++;
+        }
+        i++;
+    }
+    while (ra_count--)
+        reverse_rotate_cmd(a, "a");
+    quick_sort_stack_a(a, b, len - pushed);
+    quick_sort_stack_b(a, b, pushed);
 }
 
-
-void push_back_to_a(t_stack **a, t_stack **b)
+void        quick_sort_stack_b(t_stack **a, t_stack **b, int len)
 {
-    int max_idx;
-    while (*b)
+    int pivot;
+    int i;
+    int pushed;
+    int rb_count;
+
+    if (len <= 3)
     {
-        max_idx = find_max_index(*b);
-        while ((*b)->index != max_idx)
-            rotate_cmd(b, "b");
-        push_cmd(b, a, "a");
+        sort_small_b(a, b, len);
+        return ;
     }
+    pivot = get_pivot(*b, len);
+    i = 0;
+    pushed = 0;
+    rb_count = 0;
+    while (i < len)
+    {
+        if ((*b)->value >= pivot)
+        {
+            push_cmd(b, a, "a");
+            pushed++;
+        }
+        else
+        {
+            rotate_cmd(b, "b");
+            rb_count++;
+        }
+        i++;
+    }
+    while (rb_count--)
+        reverse_rotate_cmd(b, "b");
+    quick_sort_stack_a(a, b, pushed);
+    quick_sort_stack_b(a, b, len - pushed);
 }
