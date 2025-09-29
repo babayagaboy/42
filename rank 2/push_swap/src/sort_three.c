@@ -59,6 +59,62 @@ void sort_small_b(t_stack **a, t_stack **b, int len)
         if ((*b)->value < (*b)->next_node->value)
             swap_cmd(b, "b");
         push_cmd(b, a, "a");
-        push_cmd(b, a, "a");
+		if ((*a)->value > (*a)->next_node->value)
+			swap_cmd(a, "a");
+		push_cmd(b, a, "a");
+		if ((*a)->value > (*a)->next_node->value)
+			swap_cmd(a, "a");
     }
+}
+
+/* void sort_small_a_old(t_stack **a, int len)
+{
+    if (len == 1)
+        return ;
+    else if (len == 2)
+    {
+        if ((*a)->value > (*a)->next_node->value)
+            swap_cmd(a, "a");
+    }
+	else if (len == 3)
+	{
+		if((*a)->next_node->next_node->value > (*a)->next_node->value && (*a)->next_node->value > (*a)->value)
+			return ;
+		if((*a)->value > (*a)->next_node->value && (*a)->next_node->value < (*a)->value)
+		{
+			rotate_cmd(a, "a");
+			swap_cmd(a, "a");
+			return ;
+		}
+		if ((*a)->next_node->next_node->value > (*a)->next_node->value && (*a)->next_node->next_node->value > (*a)->value)
+			rotate_cmd(a, "a");
+		else if ((*a)->next_node->value > (*a)->value)
+			reverse_rotate_cmd(a, "a");
+		if ((*a)->next_node->next_node->value > (*a)->value)
+			swap_cmd(a, "a");
+	}
+} */
+void sort_small_a(t_stack **a, int len)
+{
+    if (len == 1)
+        return ;
+    else if (len == 2)
+    {
+        if ((*a)->value > (*a)->next_node->value)
+            swap_cmd(a, "a");
+    }
+	else if (len == 3)
+	{
+		if((*a)->next_node->next_node->value > (*a)->next_node->value && (*a)->next_node->value > (*a)->value)
+			return ;
+		if((*a)->next_node->next_node->value >(*a)->value)
+            swap_cmd(a, "a");
+		else
+		{
+			swap_cmd(a, "a");
+			rotate_cmd(a, "a");
+			swap_cmd(a, "a");
+			reverse_rotate_cmd(a, "a");
+		}
+	}
 }

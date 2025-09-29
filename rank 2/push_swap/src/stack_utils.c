@@ -66,3 +66,18 @@ t_stack *smallest_node(t_stack *stack)
 	}
 	return (smallest);
 }
+t_stack *highest_node(t_stack *stack)
+{
+	t_stack *highest;
+
+	if (!stack)
+		return (NULL);
+	highest = stack;
+	while (stack)
+	{
+		if (stack->value > highest->value)
+			highest = stack;
+		stack = stack->next_node;
+	}
+	return (highest);
+}

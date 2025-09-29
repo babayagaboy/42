@@ -59,8 +59,12 @@ void quick_sort_stack_a(t_stack **a, t_stack **b, int len)
     {
         if (len == 2 && (*a)->value > (*a)->next_node->value)
             swap_cmd(a, "a");
+		else if(ft_stacksize(*a) <=3)
+		{
+			sort_three(a);
+		}
         else if (len == 3)
-            sort_three(a);
+           sort_small_a(a,len);
         return ;
     }
     pivot = get_pivot(*a, len);
@@ -104,10 +108,16 @@ void        quick_sort_stack_b(t_stack **a, t_stack **b, int len)
     pushed = 0;
     rb_count = 0;
     while (i < len)
-    {
-        if ((*b)->value >= pivot)
+    {	
+		if ((*a)->next_node && (*a)->value > (*a)->next_node->value)
+				swap_cmd(a, "a");
+        if ((*b)->value > pivot)
         {
-            push_cmd(b, a, "a");
+			if ((*a)->next_node && (*a)->value > (*a)->next_node->value)
+				swap_cmd(a, "a");
+			if ((*b)->value < (*b)->next_node->value)
+				swap_cmd(b, "b");
+			push_cmd(b, a, "a");
             pushed++;
         }
         else
@@ -118,7 +128,9 @@ void        quick_sort_stack_b(t_stack **a, t_stack **b, int len)
         i++;
     }
     while (rb_count--)
-        reverse_rotate_cmd(b, "b");
-    quick_sort_stack_a(a, b, pushed);
-    quick_sort_stack_b(a, b, len - pushed);
+	{
+		reverse_rotate_cmd(b, "b");
+	}
+	quick_sort_stack_a(a, b, pushed + 1);
+	quick_sort_stack_b(a, b, len - pushed);
 }

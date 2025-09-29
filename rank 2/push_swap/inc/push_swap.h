@@ -38,6 +38,7 @@ t_stack	*ft_lastnode(t_stack *stack);
 int	ft_stacksize(t_stack *stack);
 int is_sorted(t_stack *stack);
 t_stack *smallest_node(t_stack *stack);
+t_stack *highest_node(t_stack *stack);
 
 // rotate_cmd.c
 
@@ -78,5 +79,7 @@ void        quick_sort_stack_b(t_stack **a, t_stack **b, int len);
 // sort_utils.c
 
 void    quick_sort_array(int *arr, int low, int high);
+
+void sort_small_a(t_stack **a, int len);
 
 #endif
