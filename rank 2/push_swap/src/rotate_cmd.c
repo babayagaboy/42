@@ -12,21 +12,21 @@
 
 #include "../inc/push_swap.h"
 
-void rotate_cmd(t_stack **stack, char *mode)
+int	rotate_cmd(t_stack **stack, char *mode)
 {
-	t_stack *first_node;
-	t_stack *last_node;
+	t_stack		*first_node;
+	t_stack		*last_node;
 
-	if (!stack || !(*stack) || !(*stack)->next_node)
-		return ;
+	if (!stack || !(*stack) || !(*stack)->next)
+		return (0);
 	first_node = *stack;
 	last_node = ft_lastnode(*stack);
-	*stack = first_node->next_node;
-	(*stack)->prev_node = NULL;
-	last_node->next_node = first_node;
-	first_node->prev_node = last_node;
-	first_node->next_node = NULL;
-
+	*stack = first_node->next;
+	(*stack)->prev = NULL;
+	last_node->next = first_node;
+	first_node->prev = last_node;
+	first_node->next = NULL;
 	if (mode)
 		ft_printf("r%s\n", mode);
+	return (1);
 }
