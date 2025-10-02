@@ -22,66 +22,57 @@ void	put_pixel(t_fdf *fdf, int x, int y, int color)
 	*(unsigned int *)pixel = color;
 }
 
-void	draw_line(t_fdf *fdf, t_point *pA, t_point *pB)
+void	draw_line_setup(t_fdf *fdf, t_point *pA, t_point *pB)
 {
-	int		xA;
-	int		yA;
-	int		xB;
-	int		yB;
-	int		dx; // diference in xA and xB 
-	int		dy; // diference in yA and yB
-	int		sx; // direction x
-	int		sy; // direction y
-	int		err;
-	int		e2;
+	t_line	*line;
+	line = malloc(sizeof(t_line));
 	int		i;
-	int		steps;
-	int		color;
-	float	percentage;
 
-	xA = (int)pA->px;
-	yA = (int)pA->py;
-	xB = (int)pB->px;
-	yB = (int)pB->py;
+	line->color = WHITE;
+	line->xA = (int)pA->px;
+	line->yA = (int)pA->py;
+	line->xB = (int)pB->px;
+	line->yB = (int)pB->py;
+	line->dx = abs(line->xB - line->xA);
+	line->dy = abs(line->yB - line->yA);
 
-	dx = abs(xB - xA);
-	dy = abs(yB - yA);
-
-	if (xA < xB)
-		sx = 1;
+	if (line->xA < line->xB)
+		line->sx = 1;
 	else
-		sx = -1;
-	if (yA < yB)
-		sy = 1;
+		line->sx = -1;
+	if (line->yA < line->yB)
+		line->sy = 1;
 	else
-		sy = -1;
-	
-	err = dx - dy;
-	if (dx > dy)
-		steps = dx;
+		line->sy = -1;
+	line->err = line->dx - line->dy;
+	if (line->dx > line->dy)
+		line->steps = line->dx;
 	else
-		steps = dy;
-	while (1)
-	{
-		if (steps == 0)
-			percentage = 0.0;
-		else
-			percentage = (float)i / steps;
-		//color = get_gradiente(pA->color, pB->color, percentage);
-		put_pixel(fdf, xA, yA, WHITE);
-		if (xA == xB && yA == yB)
-			break;
-		e2 = 2 * err;
-		if (e2 > -dy)
-		{
-			err -= dy;
-			xA += sx;
-		}
-		if (e2 < dx)
-		{
-			err += dx;
-			yA += sy;
-		}
+		line->steps = line->dy;
+	while (draw_line(fdf, line, i) == 0)
 		i++;
+	free(line);
+}
+
+int		draw_line(t_fdf *fdf, t_line *line, int i)
+{
+	if (line->steps == 0)
+		line->percentage = 0.0;
+	else
+		line->percentage = (float)i / line->steps;
+	put_pixel(fdf, line->xA, line->yA, line->color);
+	if (line->xA == line->xB && line->yA == line->yB)
+		return (1);
+	line->e2 = 2 * line->err;
+	if (line->e2 > -line->dy)
+	{
+		line->err -= line->dy;
+		line->xA += line->sx;
 	}
+	if (line->e2 < line->dx)
+	{
+		line->err += line->dx;
+		line->yA += line->sy;
+	}
+	return (0);
 }

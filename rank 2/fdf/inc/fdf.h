@@ -6,7 +6,7 @@
 /*   By: hgutterr <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/04 13:04:11 by hgutterr          #+#    #+#             */
-/*   Updated: 2025/09/15 19:01:24 by hgutterr         ###   ########.fr       */
+/*   Updated: 2025/10/02 13:29:02 by hgutterr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,8 @@
 // draw.c
 
 void			put_pixel(t_fdf *fdf, int x, int y, int color);
-void			draw_line(t_fdf *fdf, t_point *pA, t_point *pB);
+void			draw_line_setup(t_fdf *fdf, t_point *pA, t_point *pB);
+int				draw_line(t_fdf *fdf, t_line *line, int i);
 
 // read_map.c
 

@@ -29,13 +29,13 @@ void	render_map(t_map *map, t_fdf *fdf)
 			{
 				p1 = project_point(&map->points[y][x], fdf);
 				p2 = project_point(&map->points[y][x + 1], fdf);
-				draw_line(fdf, p1, p2);
+				draw_line_setup(fdf, p1, p2);
 			}
 			if (y + 1 < map->height)
 			{
 				p1 = project_point(&map->points[y][x], fdf);
 				p2 = project_point(&map->points[y + 1][x], fdf);
-				draw_line(fdf, p1, p2);
+				draw_line_setup(fdf, p1, p2);
 			}
 		}
 	}

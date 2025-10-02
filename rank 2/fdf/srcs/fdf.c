@@ -26,7 +26,8 @@ int	key_hook(int keycode, void *param)
 		fdf->scale -= .5;
 	if (keycode == KEY_R)
 	{
-		fdf->movey, fdf->movex = 0;
+		fdf->movey = 0;
+		fdf->movex = 0;
 		fdf->scale = 20;
 	}
 	if (keycode == KEY_UP)

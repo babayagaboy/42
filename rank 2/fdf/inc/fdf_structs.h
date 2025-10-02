@@ -24,6 +24,25 @@ typedef struct s_point
 	int			color;
 }				t_point;
 
+typedef struct s_line
+{
+	int			xA;
+	int			yA;
+	int			xB;
+	int			yB;
+	int			dx; // diference in xA and xB 
+	int			dy; // diference in yA and yB
+	int			sx; // direction x
+	int			sy; // direction y
+	int			err;
+	int			e2;
+	int			i;
+	int			steps;
+	int			color;
+	float		percentage;
+}				t_line;
+
+
 typedef struct s_map
 {
 	int			width;
