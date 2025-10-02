@@ -12,21 +12,22 @@
 
 #include "../inc/push_swap.h"
 
-void push_cmd(t_stack **from, t_stack **to, char *mode)
+int	push_cmd(t_stack **from, t_stack **to, char *mode)
 {
-    t_stack *tmp;
-    if (!from || !*from)
-        return;
-    tmp = *from;
-    *from = tmp->next_node;
-    if (*from)
-        (*from)->prev_node = NULL;
-    tmp->next_node = *to;
-    if (*to)
-        (*to)->prev_node = tmp;
-    tmp->prev_node = NULL;
-    *to = tmp;
+	t_stack		*tmp;
 
+	if (!from || !*from)
+		return (0);
+	tmp = *from;
+	*from = tmp->next;
+	if (*from)
+		(*from)->prev = NULL;
+	tmp->next = *to;
+	if (*to)
+		(*to)->prev = tmp;
+	tmp->prev = NULL;
+	*to = tmp;
 	if (mode)
 		ft_printf("p%s\n", mode);
+	return (1);
 }

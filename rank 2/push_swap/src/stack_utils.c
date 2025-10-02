@@ -16,8 +16,8 @@ t_stack	*ft_lastnode(t_stack *stack)
 {
 	if (!stack)
 		return (NULL);
-	while (stack->next_node)
-		stack = stack->next_node;
+	while (stack->next)
+		stack = stack->next;
 	return (stack);
 }
 
@@ -32,28 +32,28 @@ int	ft_stacksize(t_stack *stack)
 	ptr = stack;
 	while (ptr)
 	{
-		ptr = ptr->next_node;
+		ptr = ptr->next;
 		size++;
 	}
 	return (size);
 }
 
-int is_sorted(t_stack *stack)
+int	is_sorted(t_stack *stack)
 {
 	if (!stack)
 		return (1);
-	while (stack->next_node)
+	while (stack->next)
 	{
-		if (stack->value > stack->next_node->value)
+		if (stack->value > stack->next->value)
 			return (0);
-		stack = stack->next_node;
+		stack = stack->next;
 	}
 	return (1);
 }
 
-t_stack *smallest_node(t_stack *stack)
+t_stack	*smallest_node(t_stack *stack)
 {
-	t_stack *smallest;
+	t_stack		*smallest;
 
 	if (!stack)
 		return (NULL);
@@ -62,13 +62,14 @@ t_stack *smallest_node(t_stack *stack)
 	{
 		if (stack->value < smallest->value)
 			smallest = stack;
-		stack = stack->next_node;
+		stack = stack->next;
 	}
 	return (smallest);
 }
-t_stack *highest_node(t_stack *stack)
+
+t_stack	*highest_node(t_stack *stack)
 {
-	t_stack *highest;
+	t_stack		*highest;
 
 	if (!stack)
 		return (NULL);
@@ -77,7 +78,7 @@ t_stack *highest_node(t_stack *stack)
 	{
 		if (stack->value > highest->value)
 			highest = stack;
-		stack = stack->next_node;
+		stack = stack->next;
 	}
 	return (highest);
 }

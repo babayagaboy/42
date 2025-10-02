@@ -10,8 +10,8 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PUSHSWAP_H
-# define PUSHSWAP_H
+#ifndef PUSH_SWAP_H
+# define PUSH_SWAP_H
 # include <stdio.h>
 # include <unistd.h>
 # include <limits.h>
@@ -20,10 +20,9 @@
 
 typedef struct s_stack
 {
-	int	value;
-	int	index;
-	struct s_stack *next_node;
-	struct s_stack *prev_node;
+	int					value;
+	struct s_stack		*next;
+	struct s_stack		*prev;
 }	t_stack;
 
 // stack_innit.c
@@ -35,18 +34,18 @@ void	stack_innit(t_stack **a, char **argv);
 // stack_utils.c
 
 t_stack	*ft_lastnode(t_stack *stack);
-int	ft_stacksize(t_stack *stack);
-int is_sorted(t_stack *stack);
-t_stack *smallest_node(t_stack *stack);
-t_stack *highest_node(t_stack *stack);
+int		ft_stacksize(t_stack *stack);
+int		is_sorted(t_stack *stack);
+t_stack	*smallest_node(t_stack *stack);
+t_stack	*highest_node(t_stack *stack);
 
 // rotate_cmd.c
 
-void	rotate_cmd(t_stack **stack, char *mode);
+int		rotate_cmd(t_stack **stack, char *mode);
 
 // reverse_rotate_cmd.c
 
-void reverse_rotate_cmd(t_stack **stack, char *mode);
+void	reverse_rotate_cmd(t_stack **stack, char *mode);
 
 // swap_cmp.c
 
@@ -58,28 +57,25 @@ void	free_stack(t_stack **stack);
 
 // push_cmd.c
 
-void push_cmd(t_stack **from, t_stack **to, char *mode);
+int		push_cmd(t_stack **from, t_stack **to, char *mode);
 
 // sort_three.c
 
-void sort_three(t_stack **a);
-void sort_small_b(t_stack **a, t_stack **b, int len);
-
-// sort_five.c
-
-void sort_five(t_stack **a, t_stack **b);
+void	sort_three(t_stack **a);
+void	sort_small_a(t_stack **a, int len);
+int		sort_small_b(t_stack **a, t_stack **b, int len);
 
 // sort.c
 
-void sort(t_stack **a, t_stack **b);
-int  get_pivot(t_stack *stack, int len);
-void quick_sort_stack_a(t_stack **a, t_stack **b, int len);
-void        quick_sort_stack_b(t_stack **a, t_stack **b, int len);
+void	sort(t_stack **a, t_stack **b);
+int		get_pivot(t_stack *stack, int len);
+int		quick_sort_stack_a(t_stack **a, t_stack **b, int len);
+int		quick_sort_stack_b(t_stack **a, t_stack **b, int len);
 
 // sort_utils.c
 
-void    quick_sort_array(int *arr, int low, int high);
-
-void sort_small_a(t_stack **a, int len);
+void	quick_sort_array(int *arr, int low, int high);
+void	sort_if_three(t_stack **a, int len);
+int		sort_stack_b(t_stack **a, t_stack **b, int pivot);
 
 #endif

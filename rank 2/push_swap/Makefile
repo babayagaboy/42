@@ -30,7 +30,6 @@ SRCS = \
 	$(SCRDIR)/free_stack.c \
 	$(SCRDIR)/push_cmd.c \
 	$(SCRDIR)/sort_three.c \
-	$(SCRDIR)/sort_five.c \
 	$(SCRDIR)/sort.c \
 	$(SCRDIR)/sort_utils.c
 
