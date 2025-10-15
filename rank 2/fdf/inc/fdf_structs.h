@@ -42,7 +42,6 @@ typedef struct s_line
 	float		percentage;
 }				t_line;
 
-
 typedef struct s_map
 {
 	int			width;
@@ -57,8 +56,8 @@ typedef struct s_fdf
 	void		*img;
 	char		*addr;
 	int			bpp;
-	int			line_lenght;
-	int			endian;
+	int			l_len;
+	int			end;
 	float		scale;
 	float		angle;
 	int			movex;

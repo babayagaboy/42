@@ -16,7 +16,7 @@ MLX_FLAGS = -Lmlx -lmlx -lXext -lX11 -lm -lbsd
 
 OBJDIR = obj
 SRCS_GNL = gnl/get_next_line.c gnl/get_next_line_utils.c
-SRCS = $(SRCS_GNL) srcs/fdf.c srcs/read_map.c srcs/draw.c srcs/render.c srcs/project.c srcs/colors.c
+SRCS = $(SRCS_GNL) srcs/fdf.c srcs/read_map.c srcs/draw.c srcs/render.c srcs/project.c srcs/colors.c srcs/main.c
 OBJS = $(SRCS:%.c=$(OBJDIR)/%.o)
 NAME = fdf
 

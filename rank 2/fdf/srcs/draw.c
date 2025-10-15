@@ -18,16 +18,16 @@ void	put_pixel(t_fdf *fdf, int x, int y, int color)
 
 	if (x < 0 || y < 0 || x >= WIN_W || y >= WIN_H)
 		return ;
-	pixel = fdf->addr + (y * fdf->line_lenght + x * (fdf->bpp / 8));
+	pixel = fdf->addr + (y * fdf->l_len + x * (fdf->bpp / 8));
 	*(unsigned int *)pixel = color;
 }
 
 void	draw_line_setup(t_fdf *fdf, t_point *pA, t_point *pB)
 {
 	t_line	*line;
-	line = malloc(sizeof(t_line));
 	int		i;
-
+	
+	line = malloc(sizeof(t_line));
 	line->color = WHITE;
 	line->xA = (int)pA->px;
 	line->yA = (int)pA->py;
@@ -35,7 +35,6 @@ void	draw_line_setup(t_fdf *fdf, t_point *pA, t_point *pB)
 	line->yB = (int)pB->py;
 	line->dx = abs(line->xB - line->xA);
 	line->dy = abs(line->yB - line->yA);
-
 	if (line->xA < line->xB)
 		line->sx = 1;
 	else
