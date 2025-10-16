@@ -29,17 +29,17 @@ void	draw_line_setup(t_fdf *fdf, t_point *pA, t_point *pB)
 	
 	line = malloc(sizeof(t_line));
 	line->color = WHITE;
-	line->xA = (int)pA->px;
-	line->yA = (int)pA->py;
-	line->xB = (int)pB->px;
-	line->yB = (int)pB->py;
-	line->dx = abs(line->xB - line->xA);
-	line->dy = abs(line->yB - line->yA);
-	if (line->xA < line->xB)
+	line->x_a = (int)pA->px;
+	line->y_a = (int)pA->py;
+	line->x_b = (int)pB->px;
+	line->y_b = (int)pB->py;
+	line->dx = abs(line->x_b - line->x_a);
+	line->dy = abs(line->y_b - line->y_a);
+	if (line->x_a < line->x_b)
 		line->sx = 1;
 	else
 		line->sx = -1;
-	if (line->yA < line->yB)
+	if (line->y_a < line->y_b)
 		line->sy = 1;
 	else
 		line->sy = -1;
@@ -59,19 +59,19 @@ int		draw_line(t_fdf *fdf, t_line *line, int i)
 		line->percentage = 0.0;
 	else
 		line->percentage = (float)i / line->steps;
-	put_pixel(fdf, line->xA, line->yA, line->color);
-	if (line->xA == line->xB && line->yA == line->yB)
+	put_pixel(fdf, line->x_a, line->y_a, line->color);
+	if (line->x_a == line->x_b && line->y_a == line->y_b)
 		return (1);
 	line->e2 = 2 * line->err;
 	if (line->e2 > -line->dy)
 	{
 		line->err -= line->dy;
-		line->xA += line->sx;
+		line->x_a += line->sx;
 	}
 	if (line->e2 < line->dx)
 	{
 		line->err += line->dx;
-		line->yA += line->sy;
+		line->y_a += line->sy;
 	}
 	return (0);
 }

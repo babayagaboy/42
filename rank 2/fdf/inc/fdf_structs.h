@@ -26,12 +26,12 @@ typedef struct s_point
 
 typedef struct s_line
 {
-	int			xA;
-	int			yA;
-	int			xB;
-	int			yB;
-	int			dx; // diference in xA and xB 
-	int			dy; // diference in yA and yB
+	int			x_a;
+	int			y_a;
+	int			x_b;
+	int			y_b;
+	int			dx; // diference in x_a and x_b 
+	int			dy; // diference in y_a and y_b
 	int			sx; // direction x
 	int			sy; // direction y
 	int			err;
