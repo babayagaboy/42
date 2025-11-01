@@ -25,6 +25,24 @@ int	ft_check_repetition(t_stack *a, int nbr)
 	return (0);
 }
 
+int	check_char(char *c)
+{
+	int	i;
+
+	i = 0;
+	if (c[i] && (c[i] == '+' || c[i] == '-'))
+		i++;
+	if (!(c[i]) || (c[i] == '+' || c[i] == '-'))
+		return (1);
+	while (c[i])
+	{
+		if (c[i] < '0' || c[i] > '9')
+			return (1);
+		i++;
+	}
+	return (0);
+}
+
 void	ft_connect_node(t_stack **a, int nbr)
 {
 	t_stack		*node;
@@ -50,19 +68,11 @@ void	ft_connect_node(t_stack **a, int nbr)
 	}
 }
 
-void	stack_innit(t_stack **a, char **argv)
+void	stack_innit(t_stack **a, long nbr)
 {
-	static int		i;
-	long			nbr;
-
-	while (argv[i])
-	{
-		nbr = ft_atol(argv[i]);
-		if (nbr < INT_MIN || nbr > INT_MAX)
-			exit (2);
-		else if (ft_check_repetition(*a, (int)nbr))
-			exit (2);
-		ft_connect_node(a, (int)nbr);
-		i++;
-	}
+	if (nbr < INT_MIN || nbr > INT_MAX)
+		free_exit(a);
+	else if (ft_check_repetition(*a, (int)nbr))
+		free_exit(a);
+	ft_connect_node(a, (int)nbr);
 }

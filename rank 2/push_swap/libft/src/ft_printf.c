@@ -6,7 +6,7 @@
 /*   By: hgutterr <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/24 16:29:31 by hgutterr          #+#    #+#             */
-/*   Updated: 2025/09/15 19:36:40 by hgutterr         ###   ########.fr       */
+/*   Updated: 2025/11/01 23:26:46 by hgutterr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,6 @@ int	p_digit(unsigned long long nbr, int base, char type)
 		return (p_digit(nbr / base, base, type)
 			+ p_char(base_char[nbr % base]));
 }
-
 
 int	p_format(char type, va_list ap)
 {

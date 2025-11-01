@@ -28,8 +28,9 @@ typedef struct s_stack
 // stack_innit.c
 
 int		ft_check_repetition(t_stack *a, int nbr);
+int		check_char(char *c);
 void	ft_connect_node(t_stack **a, int nbr);
-void	stack_innit(t_stack **a, char **argv);
+void	stack_innit(t_stack **a, long nbr);
 
 // stack_utils.c
 
@@ -54,6 +55,8 @@ void	swap_cmd(t_stack **stack, char *mode);
 // free_stack.c
 
 void	free_stack(t_stack **stack);
+void	free_exit(t_stack **stack);
+void	free_array(char **array);
 
 // push_cmd.c
 

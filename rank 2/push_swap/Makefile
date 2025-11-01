@@ -52,7 +52,7 @@ $(NAME): $(OBJS) $(LIBFT_A)
 	@$(CC) $(CFLAGS) -c $< -o $@
 
 clean:
-	@rm -f $(OBJS)
+	@rm -rf $(OBJDIR)
 	@$(MAKE) -C $(LIBFT_DIR) clean
 	@echo "Objects removed"
 

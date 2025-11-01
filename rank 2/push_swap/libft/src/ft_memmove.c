@@ -1,38 +1,41 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_atol.c                                          :+:      :+:    :+:   */
+/*   ft_memmove.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hgutterr <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/09/15 19:26:45 by hgutterr          #+#    #+#             */
-/*   Updated: 2025/11/01 23:27:24 by hgutterr         ###   ########.fr       */
+/*   Created: 2025/04/11 15:21:20 by hgutterr          #+#    #+#             */
+/*   Updated: 2025/04/11 15:21:22 by hgutterr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../inc/libft.h"
+#include "libft.h"
 
-long	ft_atol(const char *nptr)
+void	*ft_memmove(void *dest, const void *src, size_t n)
 {
-	int			sign;
-	long		i;
-	long		result;
+	unsigned char	*temp_dest;
+	unsigned char	*temp_src;
+	size_t			i;
 
-	i = 0;
-	sign = 1;
-	result = 0;
-	while ((nptr[i] >= 9 && nptr[i] <= 13) || nptr[i] == ' ')
-		i++;
-	if (nptr[i] == '+' || nptr[i] == '-')
+	temp_dest = (unsigned char *) dest;
+	temp_src = (unsigned char *) src;
+	if (dest > src)
 	{
-		if (nptr[i] == '-')
-			sign = -1;
-		i++;
+		while (n)
+		{
+			temp_dest[n - 1] = temp_src[n - 1];
+			n--;
+		}
 	}
-	while (nptr[i] >= '0' && nptr[i] <= '9')
+	if (src > dest)
 	{
-		result = result * 10 + (nptr[i] - '0');
-		i++;
+		i = 0;
+		while (i < n)
+		{
+			temp_dest[i] = temp_src[i];
+			i++;
+		}
 	}
-	return ((long) sign * result);
+	return (dest);
 }

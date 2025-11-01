@@ -19,6 +19,11 @@ void	sort(t_stack **a, t_stack **b)
 	size = ft_stacksize(*a);
 	if (is_sorted(*a))
 		return ;
+	if (size == 2)
+	{
+		rotate_cmd(a, "a");
+		return ;
+	}
 	if (size <= 3)
 		sort_three(a);
 	else

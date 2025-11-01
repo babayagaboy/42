@@ -1,38 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_atol.c                                          :+:      :+:    :+:   */
+/*   ft_strlen.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hgutterr <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/09/15 19:26:45 by hgutterr          #+#    #+#             */
-/*   Updated: 2025/11/01 23:27:24 by hgutterr         ###   ########.fr       */
+/*   Created: 2025/04/08 17:40:37 by hgutterr          #+#    #+#             */
+/*   Updated: 2025/11/01 19:55:47 by hgutterr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../inc/libft.h"
+#include "libft.h"
 
-long	ft_atol(const char *nptr)
+size_t	ft_strlen(const char *s)
 {
-	int			sign;
-	long		i;
-	long		result;
+	int	i;
 
 	i = 0;
-	sign = 1;
-	result = 0;
-	while ((nptr[i] >= 9 && nptr[i] <= 13) || nptr[i] == ' ')
+	while (s[i])
 		i++;
-	if (nptr[i] == '+' || nptr[i] == '-')
-	{
-		if (nptr[i] == '-')
-			sign = -1;
-		i++;
-	}
-	while (nptr[i] >= '0' && nptr[i] <= '9')
-	{
-		result = result * 10 + (nptr[i] - '0');
-		i++;
-	}
-	return ((long) sign * result);
+	return (i);
 }
