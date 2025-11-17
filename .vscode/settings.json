@@ -7,7 +7,8 @@
 		"minitalk.h": "c",
 		"signal.h": "c",
 		"fdf_structs.h": "c",
-		"pushswap.h": "c"
+		"pushswap.h": "c",
+		"philo.h": "c"
 	},
 	"C_Cpp.errorSquiggles": "disabled"
 }
