@@ -12,36 +12,26 @@
 
 #include "../inc/philo.h"
 
-parse_arguments(int argc, char **argv, t_data *data)
-{
-	data->num_philos = ft_atoi(argv[1]);
-	data->time_to_die = ft_atoi(argv[2]);
-	data->time_to_eat = ft_atoi(argv[3]);
-	data->time_to_sleep = ft_atoi(argv[4]);
-	if (argc == 6)
-		data->num_meals = ft_atoi(argv[5]);
-	else
-		data->num_meals = -1;
-	if(data->num_philos <= 0 || data->time_to_die < 0 || data->time_to_eat < 0 || 
-	data->time_to_sleep < 0 || (argc == 6 && data->num_meals <= 0))
-	{
-		printf("Invalid arguments\n");
-		exit(1);
-	}
-}
-
-initialize_data()
-{
-	
-}
-
 int	main(int argc, char **argv)
 {
-	if (argc < 5 || argc > 6)
-		return (1);
+	int	i;
+    t_data	data;
 
-	t_data data;
-	parse_arguments(argc, argv, &data);
-	initialize_data(argc, argv, &data);
-	return (0);
+	i = 0;
+    if (argc < 5 || argc > 6)
+        return (printf("Usage: ./philo num_philos time_to_die time_to_eat time_to_sleep [num_meals]\n"), 1);
+	memset(&data, 0, sizeof(t_data));
+    if (init_data(argc, argv, &data) != 0)
+        return (printf("Error: initialization failed\n"), 1);
+    while (i < data.num_philos)
+        pthread_join(data.philos[i++].thread, NULL);
+    pthread_join(data.monitor, NULL);
+    i = 0;
+    while (i < data.num_philos)
+        pthread_mutex_destroy(&data.forks[i++]);
+    pthread_mutex_destroy(&data.data_mutex);
+    pthread_mutex_destroy(&data.print_mutex);
+    free(data.forks);
+    free(data.philos);
+    return (0);
 }
