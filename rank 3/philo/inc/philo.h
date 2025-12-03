@@ -13,12 +13,13 @@
 #ifndef PHILO_H
 # define PHILO_H
 
-#include <stdio.h>
-#include <stdlib.h>
-#include <unistd.h>
-#include <pthread.h>
-#include <sys/time.h>
-#include <string.h>
+# include <stdio.h>
+# include <stdlib.h>
+# include <unistd.h>
+# include <pthread.h>
+# include <sys/time.h>
+# include <string.h>
+# include "../ft_printf/ft_printf.h"
 
 typedef struct s_philo
 {
@@ -52,9 +53,18 @@ long	get_time_in_ms(void);
 int		ft_atoi(const char *nptr);
 
 // init.c
+
+int	init_mutexes(t_data *data);
+int	init_philos(t_data *data);
+int	create_threads(t_data *data);
 int		init_data(int argc, char **argv, t_data *data);
 
-// philo routine (add these)
+// philo_actions.c
+
+void	print_action(t_philo *philo, const char *msg);
+void	precise_sleep(t_philo *philo, long ms);
+int		someone_died(t_data *data);
+void	set_someone_died(t_data *data);
 void	*philo_routine(void *arg);
 void	*monitor_routine(void *arg);
 

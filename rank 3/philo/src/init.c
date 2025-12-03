@@ -12,7 +12,7 @@
 
 #include "../inc/philo.h"
 
-static int	init_mutexes(t_data *data)
+int	init_mutexes(t_data *data)
 {
     int	i;
 
@@ -33,7 +33,7 @@ static int	init_mutexes(t_data *data)
     return (0);
 }
 
-static int	init_philos(t_data *data)
+int	init_philos(t_data *data)
 {
     int	i;
 
@@ -45,7 +45,7 @@ static int	init_philos(t_data *data)
     {
         data->philos[i].id = i + 1;
         data->philos[i].left_fork = i;
-        data->philos[i].right_fork = (i + 1) % data->num_philos;
+        data->philos[i].right_fork = (i + 1) % data->num_philos; //
         data->philos[i].meals_eaten = 0;
         data->philos[i].last_meal_time = data->start_time;
         data->philos[i].data = data;
@@ -54,7 +54,7 @@ static int	init_philos(t_data *data)
     return (0);
 }
 
-static int	create_threads(t_data *data)
+int	create_threads(t_data *data)
 {
     int	i;
 

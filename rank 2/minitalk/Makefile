@@ -15,8 +15,6 @@ CFLAGS = -Wall -Wextra -Werror -Ilibft/inc
 
 SCRDIR = src
 OBJDIR = obj
-LIBFT_DIR = libft
-LIBFT_A = $(LIBFT_DIR)/libft.a
 
 NAME_CLIENT = client
 NAME_SERVER = server
