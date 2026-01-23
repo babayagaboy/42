@@ -25,6 +25,8 @@ SRCS = \
 	$(SCRDIR)/init.c \
 	$(SCRDIR)/utils.c \
 	$(SCRDIR)/philo_actions.c \
+	$(SCRDIR)/monitor.c \
+	$(SCRDIR)/routine.c \
 	$(PRINTFDIR)/ft_printf.c \
 
 
