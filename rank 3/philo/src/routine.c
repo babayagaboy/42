@@ -15,13 +15,13 @@
 static void	eat_forks_even(t_philo *ph, t_data *data)
 {
 	while (!someone_died(data)
-		&& pthread_mutex_trylock(&data->forks[ph->right_fork]) != 0)
+		&& pthread_mutex_lock(&data->forks[ph->right_fork]) != 0)
 		usleep(10);
 	if (someone_died(data))
 		return ;
 	print_action(ph, "has taken a fork");
 	while (!someone_died(data)
-		&& pthread_mutex_trylock(&data->forks[ph->left_fork]) != 0)
+		&& pthread_mutex_lock(&data->forks[ph->left_fork]) != 0)
 		usleep(10);
 	if (someone_died(data))
 	{
@@ -34,13 +34,13 @@ static void	eat_forks_even(t_philo *ph, t_data *data)
 static void	eat_forks_odd(t_philo *ph, t_data *data)
 {
 	while (!someone_died(data)
-		&& pthread_mutex_trylock(&data->forks[ph->left_fork]) != 0)
+		&& pthread_mutex_lock(&data->forks[ph->left_fork]) != 0)
 		usleep(10);
 	if (someone_died(data))
 		return ;
 	print_action(ph, "has taken a fork");
 	while (!someone_died(data)
-		&& pthread_mutex_trylock(&data->forks[ph->right_fork]) != 0)
+		&& pthread_mutex_lock(&data->forks[ph->right_fork]) != 0)
 		usleep(10);
 	if (someone_died(data))
 	{
@@ -72,7 +72,7 @@ static void	eat_and_sleep(t_philo *ph, t_data *data)
 		}
 		pthread_mutex_unlock(&data->data_mutex);
 	}
-	print_action(ph, "is sleeping");
+	print_action(ph, "is sleeping"); // fazer a parte
 	precise_sleep(ph, data->time_to_sleep);
 }
 
