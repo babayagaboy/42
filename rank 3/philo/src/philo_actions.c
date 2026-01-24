@@ -6,7 +6,7 @@
 /*   By: hgutterr <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/03 10:43:47 by hgutterr          #+#    #+#             */
-/*   Updated: 2026/01/24 13:04:14 by hgutterr         ###   ########.fr       */
+/*   Updated: 2026/01/24 17:39:13 by hgutterr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,14 @@ void	print_action(t_philo *philo, const char *msg)
 	long	timestamp;
 
 	pthread_mutex_lock(&philo->data->print_mutex);
+	pthread_mutex_lock(&philo->data->data_mutex);
+	if (philo->data->someone_died)
+	{
+		pthread_mutex_unlock(&philo->data->data_mutex);
+		pthread_mutex_unlock(&philo->data->print_mutex);
+		return ;
+	}
+	pthread_mutex_unlock(&philo->data->data_mutex);
 	timestamp = get_time_in_ms() - philo->data->start_time;
 	printf("%ld\t\t%d\t\t%s\n", timestamp, philo->id, msg);
 	pthread_mutex_unlock(&philo->data->print_mutex);
@@ -25,13 +33,21 @@ void	print_action(t_philo *philo, const char *msg)
 void	precise_sleep(t_philo *philo, long ms)
 {
 	long	start;
+	long	elapsed;
+	long	remaining;
 
 	start = get_time_in_ms();
-	while (get_time_in_ms() - start < ms)
+	while ((elapsed = get_time_in_ms() - start) < ms)
 	{
 		if (someone_died(philo->data))
 			break ;
-		usleep(200);
+		remaining = ms - elapsed;
+		if (remaining <= 0)
+			break ;
+		if (remaining * 1000 > 200)
+			usleep(200);
+		else
+			usleep(remaining * 1000);
 	}
 }
 
