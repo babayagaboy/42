@@ -84,6 +84,7 @@ void	*philo_routine(void *arg)
 	pthread_mutex_unlock(&data->data_mutex);
 	if ((ph->id % 2) == 0)
 		usleep(200);
+	// prob with mutex of data when someones dies
 	while (!someone_died(data) && (data->num_meals == -1
 			|| ph->meals_eaten <= data->num_meals))
 	{
