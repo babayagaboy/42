@@ -72,8 +72,8 @@ static void	eat_and_sleep(t_philo *ph, t_data *data)
 		}
 		pthread_mutex_unlock(&data->data_mutex);
 	}
-	print_action(ph, "is sleeping"); // fazer a parte
-	precise_sleep(ph, data->time_to_sleep);
+	if (!someone_died(data))
+		philo_sleep(ph, data);
 }
 
 void	*philo_routine(void *arg)

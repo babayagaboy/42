@@ -6,7 +6,7 @@
 /*   By: hgutterr <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/17 17:11:14 by hgutterr          #+#    #+#             */
-/*   Updated: 2026/01/22 15:40:40 by hgutterr         ###   ########.fr       */
+/*   Updated: 2026/01/24 13:03:48 by hgutterr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,7 @@ int		init_data(int argc, char **argv, t_data *data);
 
 void	print_action(t_philo *philo, const char *msg);
 void	precise_sleep(t_philo *philo, long ms);
+void	philo_sleep(t_philo *philo, t_data *data);
 int		someone_died(t_data *data);
 void	set_someone_died(t_data *data);
 void	*philo_routine(void *arg);

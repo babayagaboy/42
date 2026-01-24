@@ -6,7 +6,7 @@
 /*   By: hgutterr <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/03 10:43:47 by hgutterr          #+#    #+#             */
-/*   Updated: 2026/01/22 15:40:40 by hgutterr         ###   ########.fr       */
+/*   Updated: 2026/01/24 13:04:14 by hgutterr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,14 @@ void	precise_sleep(t_philo *philo, long ms)
 			break ;
 		usleep(200);
 	}
+}
+
+void	philo_sleep(t_philo *philo, t_data *data)
+{
+	if (someone_died(data))
+		return ;
+	print_action(philo, "is sleeping");
+	precise_sleep(philo, data->time_to_sleep);
 }
 
 int	someone_died(t_data *data)
