@@ -6,7 +6,7 @@
 /*   By: hgutterr <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/03 10:43:47 by hgutterr          #+#    #+#             */
-/*   Updated: 2026/01/24 19:55:36 by hgutterr         ###   ########.fr       */
+/*   Updated: 2026/01/27 22:10:49 by hgutterr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,8 @@ void	precise_sleep(t_philo *philo, long ms)
 	long	remaining;
 
 	start = get_time_in_ms();
-	while ((elapsed = get_time_in_ms() - start) < ms)
+	elapsed = get_time_in_ms();
+	while ((elapsed - start) < ms)
 	{
 		if (someone_died(philo->data))
 			break ;
