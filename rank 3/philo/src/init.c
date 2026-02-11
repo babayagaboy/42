@@ -6,7 +6,7 @@
 /*   By: hgutterr <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/25 17:48:37 by hgutterr          #+#    #+#             */
-/*   Updated: 2026/02/10 15:45:48 by hgutterr         ###   ########.fr       */
+/*   Updated: 2026/02/11 18:26:23 by hgutterr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,6 +82,8 @@ int	init_data(int argc, char **argv, t_data *data)
 	data->num_meals = -1;
 	if (argc == 6)
 		data->num_meals = ft_atoi(argv[5]);
+	if (data->num_meals == 0)
+		return (1);
 	data->someone_died = 0;
 	if (data->num_philos <= 0 || data->time_to_die <= 0
 		|| data->time_to_eat <= 0 || data->time_to_sleep <= 0)

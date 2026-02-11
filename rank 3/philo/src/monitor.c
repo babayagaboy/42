@@ -74,7 +74,7 @@ void	*monitor_routine(void *arg)
 		}
 		if (check_all_full(data))
 			return (NULL);
-		usleep(1000);
+		usleep(200);
 	}
 	return (NULL);
 }

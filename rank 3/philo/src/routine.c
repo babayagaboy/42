@@ -69,7 +69,7 @@ static void	eat_and_sleep(t_philo *ph, t_data *data)
 	if (!someone_died(data))
 	{
 		philo_sleep(ph, data);
-		usleep(500);
+		usleep(100);
 	}
 }
 
