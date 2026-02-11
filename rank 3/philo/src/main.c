@@ -6,7 +6,7 @@
 /*   By: hgutterr <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/17 17:10:52 by hgutterr          #+#    #+#             */
-/*   Updated: 2026/01/22 15:40:37 by hgutterr         ###   ########.fr       */
+/*   Updated: 2026/02/10 16:05:52 by hgutterr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ static int	initialize_simulation(int argc, char **argv, t_data *data)
 	memset(data, 0, sizeof(*data));
 	if (init_data(argc, argv, data) != 0)
 	{
-		ft_printf("Error: initialization failed\n");
+		printf("Error: initialization failed\n");
 		return (1);
 	}
 	return (0);

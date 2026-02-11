@@ -12,10 +12,9 @@
 
 CC = cc
 CFLAGS = -Wall -Wextra -Werror
-PTHREAD_FLAG = -pthread
+PTHREAD_FLAG = -pthread -lpthread
 
 SCRDIR = src
-PRINTFDIR = ft_printf
 OBJDIR = obj
 
 NAME = philo
@@ -27,7 +26,6 @@ SRCS = \
 	$(SCRDIR)/philo_actions.c \
 	$(SCRDIR)/monitor.c \
 	$(SCRDIR)/routine.c \
-	$(PRINTFDIR)/ft_printf.c \
 
 
 OBJS = $(SRCS:$(SCRDIR)/%.c=$(OBJDIR)/%.o)

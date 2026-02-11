@@ -6,7 +6,7 @@
 /*   By: hgutterr <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/25 17:48:37 by hgutterr          #+#    #+#             */
-/*   Updated: 2026/01/27 21:57:27 by hgutterr         ###   ########.fr       */
+/*   Updated: 2026/02/10 15:45:48 by hgutterr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,6 @@ int	create_threads(t_data *data)
 {
 	int	i;
 
-	data->start_time = get_time_in_ms();
 	i = 0;
 	while (i < data->num_philos)
 	{
@@ -89,6 +88,7 @@ int	init_data(int argc, char **argv, t_data *data)
 		return (1);
 	if (init_mutexes(data) != 0)
 		return (1);
+	data->start_time = get_time_in_ms();
 	if (init_philos(data) != 0)
 		return (1);
 	if (create_threads(data) != 0)

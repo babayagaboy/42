@@ -60,16 +60,17 @@ static void	eat_and_sleep(t_philo *ph, t_data *data)
 {
 	pthread_mutex_lock(&data->data_mutex);
 	ph->last_meal_time = get_time_in_ms();
+	ph->meals_eaten++;
 	pthread_mutex_unlock(&data->data_mutex);
 	print_action(ph, "is eating");
 	precise_sleep(ph, data->time_to_eat);
-	pthread_mutex_lock(&data->data_mutex);
-	ph->meals_eaten++;
-	pthread_mutex_unlock(&data->data_mutex);
 	pthread_mutex_unlock(&data->forks[ph->left_fork]);
 	pthread_mutex_unlock(&data->forks[ph->right_fork]);
 	if (!someone_died(data))
+	{
 		philo_sleep(ph, data);
+		usleep(500);
+	}
 }
 
 void	*philo_routine(void *arg)
@@ -82,19 +83,21 @@ void	*philo_routine(void *arg)
 	pthread_mutex_lock(&data->data_mutex);
 	ph->last_meal_time = get_time_in_ms();
 	if (data->num_philos == 1)
-	{
-		pthread_mutex_unlock(&data->data_mutex);
-		print_action(ph, "has taken a fork");
-		precise_sleep(ph, data->time_to_die);
-		return (NULL);
-	}
+		return (pthread_mutex_unlock(&data->data_mutex),
+			print_action(ph, "has taken a fork"),
+			precise_sleep(ph, data->time_to_die), NULL);
 	pthread_mutex_unlock(&data->data_mutex);
 	if ((ph->id % 2) == 0)
 		precise_sleep(ph, 15);
+	return (philo_routine_2(ph, data), NULL);
+}
+
+void	philo_routine_2(t_philo *ph, t_data *data)
+{
 	while (!someone_died(data) && (data->num_meals == -1
 			|| ph->meals_eaten < data->num_meals))
 	{
-		if (ph->left_fork < ph->right_fork)
+		if (ph->id % 2)
 		{
 			if (!eat_forks_odd(ph, data))
 				break ;
@@ -106,5 +109,4 @@ void	*philo_routine(void *arg)
 		}
 		eat_and_sleep(ph, data);
 	}
-	return (NULL);
 }

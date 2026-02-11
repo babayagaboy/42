@@ -6,7 +6,7 @@
 /*   By: hgutterr <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/17 17:11:14 by hgutterr          #+#    #+#             */
-/*   Updated: 2026/01/24 13:03:48 by hgutterr         ###   ########.fr       */
+/*   Updated: 2026/02/11 15:28:21 by hgutterr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,6 @@
 # include <pthread.h>
 # include <sys/time.h>
 # include <string.h>
-# include "../ft_printf/ft_printf.h"
 
 typedef struct s_philo
 {
@@ -63,5 +62,6 @@ int		someone_died(t_data *data);
 void	set_someone_died(t_data *data);
 void	*philo_routine(void *arg);
 void	*monitor_routine(void *arg);
+void	philo_routine_2(t_philo *ph, t_data *data);
 
 #endif
