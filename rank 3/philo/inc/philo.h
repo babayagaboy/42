@@ -6,7 +6,7 @@
 /*   By: hgutterr <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/17 17:11:14 by hgutterr          #+#    #+#             */
-/*   Updated: 2026/02/11 15:28:21 by hgutterr         ###   ########.fr       */
+/*   Updated: 2026/02/12 14:49:06 by hgutterr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,5 +63,6 @@ void	set_someone_died(t_data *data);
 void	*philo_routine(void *arg);
 void	*monitor_routine(void *arg);
 void	philo_routine_2(t_philo *ph, t_data *data);
+void	philo_think(t_philo *ph, t_data *data);
 
 #endif

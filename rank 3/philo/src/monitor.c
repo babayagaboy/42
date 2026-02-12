@@ -78,3 +78,11 @@ void	*monitor_routine(void *arg)
 	}
 	return (NULL);
 }
+
+void	philo_think(t_philo *ph, t_data *data)
+{
+	if (someone_died(data))
+		return ;
+	print_action(ph, "is thinking");
+	usleep(100);
+}
