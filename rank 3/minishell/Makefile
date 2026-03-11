@@ -1,0 +1,81 @@
+NAME = minishell
+
+CC = cc
+CFLAGS = -Wall -Wextra -Werror -g
+CFLAGS += -Iincludes -I$(LIBFT_DIR)
+CFLAGS += -I"$(shell brew --prefix readline)/include"
+
+LDFLAGS = -L"$(shell brew --prefix readline)/lib"
+LDLIBS = -lreadline -lhistory -lncurses
+
+LIBFT_DIR = includes/libft
+LIBFT = $(LIBFT_DIR)/libft.a
+
+SRCS = src/execution/envp_to_env.c \
+	src/execution/envp_to_env_utils.c \
+	src/execution/execute_pipeline.c \
+	src/execution/execute_pipeline2.c \
+	src/execution/execute_single.c \
+	src/execution/helpers.c \
+	src/execution/status_utils.c \
+	src/execution/main.c \
+	src/execution/resolve_path.c \
+	src/execution/env_to_envp.c \
+	src/execution/builtins.c \
+	src/execution/builtin_env_core.c \
+	src/execution/builtin_env_utils.c \
+	src/execution/builtin_export_unset.c \
+	src/execution/builtin_exit.c \
+	src/execution/builtins2.c \
+	src/execution/exec_external.c \
+	src/execution/execute_builtin.c \
+	src/execution/redirections.c \
+	src/execution/heredoc.c \
+	src/execution/heredoc_signal.c \
+	src/execution/heredoc_read.c \
+	src/execution/heredoc_wait.c \
+	src/execution/signals.c \
+	src/execution/signal_state.c \
+	src/parsing/exit.c \
+	src/parsing/lex_line.c \
+	src/parsing/expand_tokens.c \
+	src/parsing/expand_word.c \
+	src/parsing/parse_cmd.c \
+	src/parsing/parse_cmd_build.c \
+	src/parsing/parse_words.c \
+	src/parsing/parse_words2.c \
+	src/parsing/syntax_checker.c \
+	src/parsing/token.c \
+	src/parsing/token_utils.c \
+	src/parsing/tokenization.c \
+	src/parsing/cmd_utils.c \
+	src/parsing/env_parse.c \
+	src/parsing/env_utils.c \
+	src/parsing/env.c
+
+OBJDIR = obj
+OBJS = $(patsubst src/%.c,$(OBJDIR)/%.o,$(SRCS))
+
+all: $(NAME)
+
+$(NAME): $(LIBFT) $(OBJS)
+	$(CC) $(CFLAGS) $(OBJS) $(LIBFT) $(LDFLAGS) $(LDLIBS) -o $(NAME)
+
+$(LIBFT):
+	$(MAKE) -C $(LIBFT_DIR)
+
+$(OBJDIR)/%.o: src/%.c
+	@mkdir -p $(dir $@)
+	$(CC) $(CFLAGS) -c $< -o $@
+
+clean:
+	rm -rf $(OBJDIR)
+	$(MAKE) -C $(LIBFT_DIR) clean
+
+fclean: clean
+	rm -f $(NAME)
+	$(MAKE) -C $(LIBFT_DIR) fclean
+
+re: fclean all
+
+.PHONY: all clean fclean re
