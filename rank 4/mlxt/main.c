@@ -6,11 +6,18 @@
 /*   By: hgutterr <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/17 15:20:03 by hgutterr          #+#    #+#             */
-/*   Updated: 2026/03/18 16:04:29 by hgutterr         ###   ########.fr       */
+/*   Updated: 2026/03/18 18:37:34 by hgutterr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
+
+int	ft_isdigit(int c)
+{
+	if (c >= '0' && c <= '9')
+		return (1);
+	return (0);
+}
 
 void	put_pixel(t_mlx *mlx, int x, int y, int color)
 {
@@ -160,18 +167,18 @@ void    calc_rays(t_mlx *mlx, t_ray *ray, t_player *player)
 	}
 }
 
-long	get_timestamp(void)
+double	get_timestamp(void)
 {
-	struct timeval tv;
+	struct timeval	tv;
 
 	gettimeofday(&tv, NULL);
-	return((tv.tv_sec * 1000) + (tv.tv_usec / 1000));
+	return ((double)tv.tv_sec / 1000000.0);
 }
 
 void	get_time(t_player *p)
 {
 	p->old_time = p->time;
-	p->time = (double)get_timestamp();
+	p->time = get_timestamp();
 	p->frame_time = (p->time - p->old_time) / 1000.0;	// time this frame has taken, in seconds
 	p->move_speed = p->frame_time * 5.0;				// const value in squares per sec
 	p->rotation_speed = p->frame_time * 3.0;			// const value in radians per sec
@@ -180,9 +187,10 @@ int		handle_input(int key, t_player *p)
 {
 	if (key == KEY_UP)
 	{
-		if(!(worldMap[(int)(p->pos_x + p->dir_x * p->move_speed)][(int)(p->pos_y)]))
+		printf("time = %f\n", p->time);
+		if(!(ft_isdigit(worldMap[(int)(p->pos_x + (p->dir_x * p->move_speed))][(int)(p->pos_y)])))
 			p->pos_x += p->dir_x * p->move_speed;
-		if(!(worldMap[(int)(p->pos_x)][(int)(p->pos_y + p->dir_y * p->move_speed)]))
+		if((worldMap[(int)(p->pos_x)][(int)(p->pos_y + (p->dir_y * p->move_speed))]))
 			p->pos_y += p->dir_y * p->move_speed;
 	}
 	if (key == KEY_DOWN)
