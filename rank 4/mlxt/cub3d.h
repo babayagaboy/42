@@ -6,7 +6,7 @@
 /*   By: hgutterr <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/17 15:26:31 by hgutterr          #+#    #+#             */
-/*   Updated: 2026/03/17 18:12:05 by hgutterr         ###   ########.fr       */
+/*   Updated: 2026/03/18 15:58:49 by hgutterr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,13 +18,20 @@
 # include <stdio.h>
 # include <stdlib.h>
 # include <math.h>
+# include <string.h>
+# include <limits.h>
+# include <sys/time.h>
 
 # include "mlx/mlx.h"
 
-#define mapWidth 24
-#define mapHeight 24
-#define screenWidth 640
-#define screenHeight 480
+# define mapWidth 24
+# define mapHeight 24
+# define screenWidth 640
+# define screenHeight 480
+# define KEY_UP        65362
+# define KEY_DOWN      65364
+# define KEY_LEFT      65361
+# define KEY_RIGHT     65363
 
 int worldMap[mapWidth][mapHeight]=
 {
@@ -65,6 +72,9 @@ typedef struct s_player
 
 	double	time;
 	double	old_time;
+	double	frame_time;
+	double	move_speed;
+	double	rotation_speed;
 }	t_player;
 
 typedef struct s_ray
