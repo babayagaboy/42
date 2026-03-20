@@ -6,7 +6,7 @@
 /*   By: hgutterr <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/17 15:26:31 by hgutterr          #+#    #+#             */
-/*   Updated: 2026/03/18 15:58:49 by hgutterr         ###   ########.fr       */
+/*   Updated: 2026/03/20 17:52:39 by hgutterr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,10 +28,10 @@
 # define mapHeight 24
 # define screenWidth 640
 # define screenHeight 480
-# define KEY_UP        65362
-# define KEY_DOWN      65364
-# define KEY_LEFT      65361
-# define KEY_RIGHT     65363
+# define KEY_UP        119
+# define KEY_DOWN      115
+# define KEY_LEFT      97
+# define KEY_RIGHT     100
 
 int worldMap[mapWidth][mapHeight]=
 {
@@ -61,20 +61,23 @@ int worldMap[mapWidth][mapHeight]=
   {1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1}
 };
 
+
 typedef struct s_player
 {
 	double	pos_y; // y/2
 	double	pos_x; // x/2
 	double	dir_y; // -1=N 1=S
 	double	dir_x; // -1=W 1=E
+	double	old_dir_x;
 	double	plane_y; // FOV is 2 * atan(0.66/1.0)=66°
 	double	plane_x;
-
+	double	old_plane_x;
+	
 	double	time;
 	double	old_time;
 	double	frame_time;
 	double	move_speed;
-	double	rotation_speed;
+	double	rot_speed;
 }	t_player;
 
 typedef struct s_ray
@@ -107,5 +110,11 @@ typedef struct s_mlx
 	int		endian;
 }	t_mlx;
 
+typedef struct s_game
+{
+	t_mlx		*mlx;
+	t_player	*player;
+	t_ray		*ray;
+}	t_game;
 
 #endif
