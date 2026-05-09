@@ -1,0 +1,8 @@
+{
+   mlx
+   Memcheck:Leak
+   match-leak-kinds:all
+   ...
+   obj:/usr/lib/x86_64-linux-gnu/libX*
+   ...
+}
