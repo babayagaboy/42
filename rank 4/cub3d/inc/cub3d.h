@@ -25,8 +25,8 @@
 # include "../mlx/mlx.h"
 # include <cub3d_proto.h>
 
-# define SCREENWIDTH	1520
-# define SCREENHEIGHT	980
+# define SCREENWIDTH	1980
+# define SCREENHEIGHT	1080
 # define KEY_W			119
 # define KEY_S			115
 # define KEY_A			97

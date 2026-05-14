@@ -4,14 +4,6 @@ WE ./textures/starWarsWall.xpm
 EA ./textures/starWarsWall.xpm
 C  ./textures/starCeiling.xpm
 
-
-
-
-
-
-
-
-
 NO ./textures/starWarsWall.xpm
 
 D ./textures/starWarsDoor.xpm
