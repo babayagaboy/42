@@ -6,16 +6,17 @@
 #    By: hgutterr <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/05/14 16:53:17 by hgutterr          #+#    #+#              #
-#    Updated: 2026/05/18 21:57:13 by hgutterr         ###   ########.fr        #
+#    Updated: 2026/05/18 21:57:09 by hgutterr         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME		= megaphone
+NAME		= phonebook
 
 CXX 		= c++
 CXXFLAGS 	= -Wall -Werror -Wextra -std=c++98
 
-SRCS		= megaphone.cpp
+SRCS		=	main.cpp \
+				Contacts.cpp
 
 OBJDIR		= obj
 OBJS		= $(SRCS:%.cpp=$(OBJDIR)/%.o)
