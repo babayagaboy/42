@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   draw.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: myivanov <myivanov@student.42.fr>          +#+  +:+       +#+        */
+/*   By: hgutterr <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/06 16:18:21 by myivanov          #+#    #+#             */
-/*   Updated: 2026/05/07 14:12:00 by myivanov         ###   ########.fr       */
+/*   Updated: 2026/05/18 16:39:36 by hgutterr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <cub3d.h>
 
-void	put_pixel(t_mlx *mlx, int x, int y, int color)
+extern inline void	put_pixel(t_mlx *mlx, int x, int y, int color)
 {
 	char	*dst;
 

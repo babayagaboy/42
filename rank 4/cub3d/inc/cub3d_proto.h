@@ -6,7 +6,7 @@
 /*   By: hgutterr <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/07 14:15:59 by myivanov          #+#    #+#             */
-/*   Updated: 2026/05/07 20:28:37 by hgutterr         ###   ########.fr       */
+/*   Updated: 2026/05/18 16:36:30 by hgutterr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,7 +106,7 @@ void		handle_weapon_state_3(t_game *g);
 void		run_weapon_animation(t_game *g);
 
 void		put_square(int y, int x, int color, t_game *g);
-void		put_pixel(t_mlx *mlx, int x, int y, int color);
+inline void		put_pixel(t_mlx *mlx, int x, int y, int color);
 void		minimap(t_game *g);
 
 int			hit_door_plane(t_ray *r, t_player *p, t_game *g);
