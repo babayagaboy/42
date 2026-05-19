@@ -11,9 +11,29 @@
 /* ************************************************************************** */
 
 #include <iostream>
-#include "Contacts.hpp"
+#include <string>
+#include "PhoneBook.hpp"
 
 int main()
 {
-	Contact cont1;
+	int exit = 0;
+	std::string input;
+	int index = 0;
+	PhoneBook phonebook;
+
+	while (!exit)
+	{
+		clearScreen();
+		std::cout << "Enter a comand: ADD; SEARCH; EXIT." << std::endl;
+		std::cout << "-> ";
+		getline(std::cin, input);
+		if (!input.compare("ADD"))
+			addCmd(phonebook, index++);
+		else if (!input.compare("SEARCH"))
+			searchCmd();
+		else if (!input.compare("EXIT"))
+			exit = exitCmd();
+		else
+			waitEnter("Wrong comand...");
+	}
 }

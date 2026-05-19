@@ -6,49 +6,86 @@
 /*   By: hgutterr <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/18 17:17:39 by hgutterr          #+#    #+#             */
-/*   Updated: 2026/05/18 22:06:55 by hgutterr         ###   ########.fr       */
+/*   Updated: 2026/05/19 17:55:11 by hgutterr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <iostream>
 #include <iomanip>
+#include <cstdlib>
 #include "PhoneBook.hpp"
 
-static void clearScreen()
-{
-	std::cout << "\e[H\e[2J\e[3J";
+Contact PhoneBook::getContact(int index) {
+	return (cont[index]);
 }
 
-void	addCmd()
+void	addCmd(PhoneBook &phonebook, int i)
 {
-	std::string fn;
-	std::string ln;
-	int 		pn;
-	std::string ds;
+	clearScreen();
+	std::string input;
 
 	std::cout << "Enter first name: ";
-	std::cin >> fn;
+	getline(std::cin, input);
 	std::cout << std::endl;
+
+	while (!(isstring(input)))
+	{
+		std::cout << "Try again: ";
+		getline(std::cin, input);
+	}
+	phonebook.getContact(i).setFirstName(input);
 
 	std::cout << "Enter last name: ";
-	std::cin >> ln;
+	getline(std::cin, input);
 	std::cout << std::endl;
+
+	while (!(isstring(input)))
+	{
+		std::cout << "Try again: ";
+		getline(std::cin, input);
+	}
+	phonebook.getContact(i).setLastName(input);
+
+	std::cout << "Enter nick name: ";
+	getline(std::cin, input);
+	std::cout << std::endl;
+
+	while (!(isstring(input)))
+	{
+		std::cout << "Try again: ";
+		getline(std::cin, input);
+	}
+	phonebook.getContact(i).setNickName(input);
 
 	std::cout << "Enter phone number: ";
-	std::cin >> pn;
+	getline(std::cin, input);
 	std::cout << std::endl;
+
+	while (!(isnumber(input)))
+	{
+		std::cout << "Try again: ";
+		getline(std::cin, input);
+	}
+	phonebook.getContact(i).setPhoneNum(std::atoi(input.c_str()));
 
 	std::cout << "Enter darkest secret: ";
-	std::cin >> ds;
+	getline(std::cin, input);
 	std::cout << std::endl;
+	phonebook.getContact(i).setDarkestSecret(input);
+	waitEnter("Successfully added contact to phonebook...");
 }
 
-void	searchCmd()
+void	searchCmd(PhoneBook &phonebook, int index)
 {
-	;
+	std::cout << "INDEX"     << "|";
+	std::cout << "NAME"      << "|";
+	std::cout << "LAST NAME" << "|";
+	std::cout << "NICK NAME" << "|" << std::endl;
+
 }
 
-void	exitCmd()
+int	exitCmd() 
 {
-	;
+	std::cout << "Exiting program..." << std::endl;
+	return (1);
 }
