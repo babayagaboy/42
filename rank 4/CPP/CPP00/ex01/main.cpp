@@ -30,7 +30,7 @@ int main()
 		if (!input.compare("ADD"))
 			addCmd(phonebook, index++);
 		else if (!input.compare("SEARCH"))
-			searchCmd();
+			searchCmd(phonebook);
 		else if (!input.compare("EXIT"))
 			exit = exitCmd();
 		else

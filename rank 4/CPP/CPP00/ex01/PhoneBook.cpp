@@ -6,7 +6,7 @@
 /*   By: hgutterr <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/18 17:17:39 by hgutterr          #+#    #+#             */
-/*   Updated: 2026/05/19 17:55:11 by hgutterr         ###   ########.fr       */
+/*   Updated: 2026/05/19 20:00:59 by hgutterr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,13 +75,22 @@ void	addCmd(PhoneBook &phonebook, int i)
 	waitEnter("Successfully added contact to phonebook...");
 }
 
-void	searchCmd(PhoneBook &phonebook, int index)
+void	searchCmd(PhoneBook &phonebook)
 {
 	std::cout << "INDEX"     << "|";
 	std::cout << "NAME"      << "|";
 	std::cout << "LAST NAME" << "|";
 	std::cout << "NICK NAME" << "|" << std::endl;
 
+	std::setw(10);
+	std::right;
+	for (int n = 0; n < 8; ++n) {
+		std::cout << n << "|";
+		std::cout << phonebook.getContact(n).getFirstName() << "|";
+		std::cout << phonebook.getContact(n).getLastName()<< "|";
+		std::cout << phonebook.getContact(n).getNickName() << std::endl;
+	}
+	waitEnter();
 }
 
 int	exitCmd() 
