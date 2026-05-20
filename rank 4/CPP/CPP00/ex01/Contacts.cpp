@@ -14,41 +14,50 @@
 #include "Contacts.hpp"
 
 std::string Contact::getFirstName() {
-	return (this->firstName);
+	return (this->_firstName);
 }
 
 std::string Contact::getLastName() {
-	return (this->lastName);
+	return (this->_lastName);
 }
 
 std::string Contact::getNickName() {
-	return (this->nickName);
+	return (this->_nickName);
 }
 
-int Contact::getPhoneNum() {
-	return (this->phoneNum);
+std::string Contact::getPhoneNum() {
+	return (this->_phoneNum);
 }
 
 std::string Contact::getDarkestSecret() {
-	return (this->darkestSecret);
+	return (this->_darkestSecret);
 }
 
 void Contact::setFirstName(std::string firstName) {
-	this->firstName = firstName;
+	this->_firstName = firstName;
 }
 
 void Contact::setLastName(std::string lastName) {
-	this->lastName = lastName;
+	this->_lastName = lastName;
 }
 
 void Contact::setNickName(std::string nickName) {
-	this->nickName = nickName;
+	this->_nickName = nickName;
 }
 
-void Contact::setPhoneNum(int phoneNum) {
-	this->phoneNum = phoneNum;
+void Contact::setPhoneNum(std::string phoneNum) {
+	this->_phoneNum = phoneNum;
 }
 
 void Contact::setDarkestSecret(std::string darkestSecret) {
-	this->darkestSecret = darkestSecret;
+	this->_darkestSecret = darkestSecret;
+}
+
+void	Contact::printContactInfo()
+{
+	std::cout << "First Name: " << this->_firstName << std::endl;
+	std::cout << "Last Name: " << this->_lastName << std::endl;
+	std::cout << "Nick Name: " << this->_nickName << std::endl;
+	std::cout << "Phone Number: " << this->_phoneNum << std::endl;
+	std::cout << "Darkest Secret: " << this->_darkestSecret << std::endl;
 }

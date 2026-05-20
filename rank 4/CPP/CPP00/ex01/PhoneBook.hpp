@@ -6,7 +6,7 @@
 /*   By: hgutterr <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/18 17:18:03 by hgutterr          #+#    #+#             */
-/*   Updated: 2026/05/19 19:59:34 by hgutterr         ###   ########.fr       */
+/*   Updated: 2026/05/20 14:00:59 by hgutterr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,16 +15,16 @@
 
 class PhoneBook {
 	private:
-		Contact cont[8];
+		Contact _cont[8];
 	public:
-		Contact getContact(int index);
+		void		addCmd(int i);
+		void		searchCmd();
+		Contact*	getContacts();
 };
 
-void	addCmd(PhoneBook &phonebook, int i);
-void	searchCmd(PhoneBook &phonebook);
-int		exitCmd();
-
-void	clearScreen();
-int		isstring(std::string str);
-int		isnumber(std::string str);
-void	waitEnter(std::string str = "");
+int			exitCmd();
+void		clearScreen();
+void		printContactInfo(int index);
+int			isstring(std::string str);
+int			isnumber(std::string str);
+void		waitEnter(std::string str = "");

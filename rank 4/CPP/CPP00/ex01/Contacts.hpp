@@ -14,21 +14,22 @@
 
 class Contact {
 	private:
-		std::string	firstName;
-		std::string	lastName;
-		std::string	nickName;
-		int 		phoneNum;
-		std::string	darkestSecret;
+		std::string	_firstName;
+		std::string	_lastName;
+		std::string	_nickName;
+		std::string	_phoneNum;
+		std::string	_darkestSecret;
 	public:
 		std::string	getFirstName();
 		std::string	getLastName();
 		std::string	getNickName();
-		int			getPhoneNum();
+		std::string	getPhoneNum();
 		std::string	getDarkestSecret();
 	
 		void	setFirstName(std::string firstName);
 		void	setLastName(std::string lastName);
 		void	setNickName(std::string nickName);
-		void	setPhoneNum(int phoneNum);
+		void	setPhoneNum(std::string phoneNum);
 		void	setDarkestSecret(std::string darkestSecret);
+		void	printContactInfo();
 };

@@ -28,12 +28,13 @@ int main()
 		std::cout << "-> ";
 		getline(std::cin, input);
 		if (!input.compare("ADD"))
-			addCmd(phonebook, index++);
+			phonebook.addCmd(index++);
 		else if (!input.compare("SEARCH"))
-			searchCmd(phonebook);
+			phonebook.searchCmd();
 		else if (!input.compare("EXIT"))
 			exit = exitCmd();
 		else
 			waitEnter("Wrong comand...");
+		index = index % 8;
 	}
 }
