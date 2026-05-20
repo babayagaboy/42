@@ -10,6 +10,9 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+#ifndef CONTACTS_HPP
+# define CONTACTS_HPP
+
 #include <iostream>
 
 class Contact {
@@ -33,3 +36,5 @@ class Contact {
 		void	setDarkestSecret(std::string darkestSecret);
 		void	printContactInfo();
 };
+
+#endif

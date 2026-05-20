@@ -6,7 +6,7 @@
 /*   By: hgutterr <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/18 17:17:39 by hgutterr          #+#    #+#             */
-/*   Updated: 2026/05/20 15:37:49 by hgutterr         ###   ########.fr       */
+/*   Updated: 2026/05/20 16:28:56 by hgutterr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,57 +42,97 @@ void	PhoneBook::addCmd(int i)
 	std::string input;
 
 	std::cout << "Enter first name: ";
-	getline(std::cin, input);
+	if (!std::getline(std::cin, input))
+	{
+		std::cin.clear();
+		exit(1);
+	}
 	std::cout << std::endl;
 
 	while (!(isstring(input)) && !input.empty())
 	{
 		std::cout << "Try again: ";
-		getline(std::cin, input);
+		if (!std::getline(std::cin, input))
+		{
+			std::cin.clear();
+			exit(1);
+		}
 	}
 	person.setFirstName(input);
 
 	std::cout << "Enter last name: ";
-	getline(std::cin, input);
+	if (!std::getline(std::cin, input))
+	{
+		std::cin.clear();
+		exit(1);
+	}
 	std::cout << std::endl;
 
 	while (!(isstring(input)) && !input.empty())
 	{
 		std::cout << "Try again: ";
-		getline(std::cin, input);
+		if (!std::getline(std::cin, input))
+		{
+			std::cin.clear();
+			exit(1);
+		}
 	}
 	person.setLastName(input);
 
 	std::cout << "Enter nick name: ";
-	getline(std::cin, input);
+	if (!std::getline(std::cin, input))
+	{
+		std::cin.clear();
+		exit(1);
+	}
 	std::cout << std::endl;
 
 	while (!(isstring(input)) && !input.empty())
 	{
 		std::cout << "Try again: ";
-		getline(std::cin, input);
+		if (!std::getline(std::cin, input))
+		{
+			std::cin.clear();
+			exit(1);
+		}
 	}
 	person.setNickName(input);
 
 	std::cout << "Enter phone number: ";
-	getline(std::cin, input);
+	if (!std::getline(std::cin, input))
+	{
+		std::cin.clear();
+		exit(1);
+	}
 	std::cout << std::endl;
 
 	while (!(isnumber(input)) && !input.empty())
 	{
 		std::cout << "Try again: ";
-		getline(std::cin, input);
+		if (!std::getline(std::cin, input))
+		{
+			std::cin.clear();
+			exit(1);
+		}
 	}
 	person.setPhoneNum(input);
 
 	std::cout << "Enter darkest secret: ";
-	getline(std::cin, input);
+	if (!std::getline(std::cin, input))
+	{
+		std::cin.clear();
+		exit(1);
+	}
 	std::cout << std::endl;
 
 	while (!(isstring(input)) && !input.empty())
 	{
 		std::cout << "Try again: ";
-		getline(std::cin, input);
+		if (!std::getline(std::cin, input))
+		{
+			std::cin.clear();
+			exit(1);
+		}
 	}
 	person.setDarkestSecret(input);
 	waitEnter("Successfully added contact to phonebook...");
@@ -121,7 +161,11 @@ void	PhoneBook::searchCmd()
 			std::cout << std::endl;
 		}
 		std::cout << "Enter an index to expand (or exit to leave): ";
-		getline(std::cin, input);
+		if (!std::getline(std::cin, input))
+		{
+			std::cin.clear();
+			break ;
+		}
 		if (!input.compare("EXIT") || !input.compare("exit"))
 			exit = 1;
 		else if (!input.empty() && (input.find_first_not_of("0123456789") == std::string::npos))

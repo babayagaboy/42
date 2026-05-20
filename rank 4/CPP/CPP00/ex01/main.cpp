@@ -26,8 +26,12 @@ int main()
 		clearScreen();
 		std::cout << "Enter a comand: ADD; SEARCH; EXIT." << std::endl;
 		std::cout << "-> ";
-		getline(std::cin, input);
-		if (!input.compare("ADD"))
+		if (!std::getline(std::cin, input))
+		{
+			std::cin.clear();
+			break ;
+		}
+		else if (!input.compare("ADD"))
 			phonebook.addCmd(index++);
 		else if (!input.compare("SEARCH"))
 			phonebook.searchCmd();
