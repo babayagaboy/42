@@ -2,7 +2,7 @@ F ./textures/starWarsFloor.xpm
 SO ./textures/starWarsWall.xpm
 WE ./textures/starWarsWall.xpm
 EA ./textures/starWarsWall.xpm
-C  ./textures/starCeiling.xpm
+C  ./textures/textura
 
 NO ./textures/starWarsWall.xpm
 
