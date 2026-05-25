@@ -6,7 +6,7 @@
 /*   By: hgutterr <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/22 20:29:05 by hgutterr          #+#    #+#             */
-/*   Updated: 2026/05/22 22:57:14 by hgutterr         ###   ########.fr       */
+/*   Updated: 2026/05/25 17:53:34 by hgutterr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ int	main()
 	{
 		HumanA a("hugo", w1);
 		a.attack();
-		HumanA b("miguel", w1);
+		//HumanA b("miguel");
 	}
 	std::cout << std::endl;
 	{
