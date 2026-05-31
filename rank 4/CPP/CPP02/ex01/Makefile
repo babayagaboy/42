@@ -5,18 +5,18 @@
 #                                                     +:+ +:+         +:+      #
 #    By: hgutterr <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2026/05/25 22:10:03 by hgutterr          #+#    #+#              #
-#    Updated: 2026/05/25 22:10:03 by hgutterr         ###   ########.fr        #
+#    Created: 2026/05/26 19:24:23 by hgutterr          #+#    #+#              #
+#    Updated: 2026/05/26 19:24:23 by hgutterr         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME		= harl
+NAME		= fixed
 
 CXX 		= c++
 CXXFLAGS 	= -Wall -Werror -Wextra -std=c++98
 
 SRCS		=	main.cpp \
-				Harl.cpp
+				Fixed.cpp
 
 OBJDIR		= obj
 OBJS		= $(SRCS:%.cpp=$(OBJDIR)/%.o)

@@ -74,8 +74,21 @@ void	Harl::complain( std::string level )
 	for(int i = 0; i < 4; ++i) {
 		if (!level.compare(l[i]))
 		{
-			(this->*functions[i])();
-			return ;
+			switch (i)
+			{
+			case 0:
+				(this->*functions[i++])();
+				/* fall through */
+			case 1:
+				(this->*functions[i++])();
+				/* fall through */
+			case 2:
+				(this->*functions[i++])();
+				/* fall through */
+			case 3:
+				(this->*functions[i])();
+				return ;
+			}
 		}
 	}
 	std::cout 

@@ -13,13 +13,10 @@
 #include <iostream>
 #include "Harl.hpp"
 
-int main()
+int main(int ac, char **av)
 {
+	if (ac != 2)
+		return ((std::cout << "wrong imput" << std::endl), 1);
 	Harl h;
-
-	h.complain("debug");
-	h.complain("info");
-	h.complain("warning");
-	h.complain("error");
-	h.complain("a");
+	h.complain(av[1]);
 }

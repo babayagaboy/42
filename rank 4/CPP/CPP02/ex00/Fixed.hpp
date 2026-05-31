@@ -1,25 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.cpp                                           :+:      :+:    :+:   */
+/*   Fixed.hpp                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hgutterr <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/05/25 22:09:52 by hgutterr          #+#    #+#             */
-/*   Updated: 2026/05/25 22:09:52 by hgutterr         ###   ########.fr       */
+/*   Created: 2026/05/26 19:25:43 by hgutterr          #+#    #+#             */
+/*   Updated: 2026/05/26 19:25:43 by hgutterr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#ifndef FIXED_HPP
+# define FIXED_HPP
+
 #include <iostream>
-#include "Harl.hpp"
 
-int main()
+class Fixed
 {
-	Harl h;
+	private:
+		int					_value;
+		static const int	_bits;
+	public:
+		Fixed( void );
+		Fixed( int value );
+		Fixed( const Fixed& other );
+		Fixed& operator=(const Fixed& other);
+		~Fixed();
 
-	h.complain("debug");
-	h.complain("info");
-	h.complain("warning");
-	h.complain("error");
-	h.complain("a");
-}
+		int		getRawBits( void ) const;
+		void	setRawBits( int const raw );
+};
+
+#endif
