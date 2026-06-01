@@ -15,7 +15,7 @@
 
 int main( void ) 
 {
-	Fixed a(100);
+	Fixed a(0);
 	Fixed b( a );
 	Fixed c;
 	c = b;

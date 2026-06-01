@@ -12,7 +12,7 @@
 
 #include "Fixed.hpp"
 
-const int _bits = 8;
+//const int _bits = 8;
 
 Fixed::Fixed( void ) 
 {
@@ -34,7 +34,7 @@ Fixed::Fixed( const Fixed& other )
 
 Fixed& Fixed::operator=(const Fixed& other)
 {
-	std::cout << "Copy assignment called" << std::endl;
+	std::cout << "Copy assignment operator called" << std::endl;
 	if(this != &other)
 		this->_value = other.getRawBits();
 	return (*this);

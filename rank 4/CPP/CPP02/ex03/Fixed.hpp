@@ -36,10 +36,10 @@ class Fixed
 		inline bool operator==(const Fixed& other) const;
 		inline bool operator!=(const Fixed& other) const;
 
-		float		operator+(const Fixed& other) const;
-		float		operator-(const Fixed& other) const;
-		float		operator*(const Fixed& other) const;
-		float		operator/(const Fixed& other) const;
+		Fixed		operator+(const Fixed& other) const;
+		Fixed		operator-(const Fixed& other) const;
+		Fixed		operator*(const Fixed& other) const;
+		Fixed		operator/(const Fixed& other) const;
 
 		Fixed&		operator++();
 		Fixed&		operator--();

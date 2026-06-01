@@ -96,19 +96,19 @@ inline bool Fixed::operator!=(const Fixed& other) const {
 	return (this->toFloat() != other.toFloat());
 }
 
-float Fixed::operator+(const Fixed& other) const {
+Fixed Fixed::operator+(const Fixed& other) const {
 	return(this->toFloat() + other.toFloat());
 }
 
-float Fixed::operator-(const Fixed& other) const {
+Fixed Fixed::operator-(const Fixed& other) const {
 	return(this->toFloat() - other.toFloat());
 }
 
-float Fixed::operator*(const Fixed& other) const {
+Fixed Fixed::operator*(const Fixed& other) const {
 	return(this->toFloat() * other.toFloat());
 }
 
-float Fixed::operator/(const Fixed& other) const {
+Fixed Fixed::operator/(const Fixed& other) const {
 	return(this->toFloat() / other.toFloat());
 }
 
