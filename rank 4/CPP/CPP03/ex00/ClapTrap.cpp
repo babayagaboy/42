@@ -6,7 +6,7 @@
 /*   By: hgutterr <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/01 15:00:02 by hgutterr          #+#    #+#             */
-/*   Updated: 2026/06/01 18:34:24 by hgutterr         ###   ########.fr       */
+/*   Updated: 2026/06/02 12:07:29 by hgutterr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,12 +24,12 @@ ClapTrap::ClapTrap( std::string name ) : _name(name), _hitpoints(10),
 	std::cout << "Default constructor called" << std::endl;
 }
 
-ClapTrap::ClapTrap( ClapTrap& other ) {
+ClapTrap::ClapTrap( const ClapTrap& other ) {
 	std::cout << "Copy constructor called" << std::endl;
 	*this = other;
 }
 
-ClapTrap& ClapTrap::operator=( ClapTrap &other )
+ClapTrap& ClapTrap::operator=( const ClapTrap &other )
 {
 	std::cout << "Copy assigning operator called" << std::endl;
 	if (this != &other)
