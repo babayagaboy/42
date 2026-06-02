@@ -28,6 +28,26 @@ DiamondTrap::DiamondTrap ( std::string name ) : ClapTrap(name + "_clap_name"), S
 	this->_attackdmg = FragTrap::_attackdmg;
 }
 
+DiamondTrap::DiamondTrap( const DiamondTrap& other ) : ClapTrap(other), ScavTrap(other),
+	FragTrap(other)
+{
+	std::cout << "DiamondTrap Copy constructor called" << std::endl;
+	*this = other;
+}
+
+DiamondTrap& DiamondTrap::operator=( const DiamondTrap& other )
+{
+	std::cout << "DiamondTrap Copy assignment operator called" << std::endl;
+	if(this != &other)
+	{
+		this->_name = other._name;
+		this->_hitpoints = other._hitpoints;
+		this->_energypoints = other._energypoints;
+		this->_attackdmg = other._attackdmg;
+	}
+	return (*this);
+}
+
 DiamondTrap::~DiamondTrap( void ) {
 	std::cout << "DiamondTrap destructor called" << std::endl;
 }

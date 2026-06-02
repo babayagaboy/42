@@ -6,7 +6,7 @@
 /*   By: hgutterr <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/01 14:59:03 by hgutterr          #+#    #+#             */
-/*   Updated: 2026/06/01 18:07:14 by hgutterr         ###   ########.fr       */
+/*   Updated: 2026/06/02 12:08:58 by hgutterr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,8 @@ class ClapTrap {
 	public:
 		ClapTrap( void );
 		ClapTrap( std::string name );
-		ClapTrap( ClapTrap& other );
-		ClapTrap& operator=( ClapTrap &other );
+		ClapTrap( const ClapTrap& other );
+		ClapTrap& operator=( const ClapTrap &other );
 		~ClapTrap( void );
 
 		void	attack( const std::string& target );
