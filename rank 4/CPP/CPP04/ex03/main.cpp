@@ -6,7 +6,7 @@
 /*   By: hgutterr <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/03 13:18:08 by hgutterr          #+#    #+#             */
-/*   Updated: 2026/06/05 20:10:39 by hgutterr         ###   ########.fr       */
+/*   Updated: 2026/06/05 22:32:26 by hgutterr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,23 +17,6 @@
 #include "ICharacter.hpp"
 #include "Character.hpp"
 #include "MateriaSource.hpp"
-
-#include "AMateria.hpp"
-#include "IMateriaSource.hpp"
-#include "MateriaSource.hpp"
-#include "ICharacter.hpp"
-#include "Character.hpp"
-#include "Ice.hpp"
-#include "Cure.hpp"
-#include <iostream>
-
-#include "AMateria.hpp"
-#include "IMateriaSource.hpp"
-#include "MateriaSource.hpp"
-#include "ICharacter.hpp"
-#include "Character.hpp"
-#include "Ice.hpp"
-#include "Cure.hpp"
 #include <iostream>
 
 int main()
@@ -54,6 +37,12 @@ int main()
     sephiroth->equip(tmp);
     
     tmp = src->createMateria("cure");
+    cloud->equip(tmp);
+	tmp = src->createMateria("cure");
+    cloud->equip(tmp);
+	tmp = src->createMateria("cure");
+    cloud->equip(tmp);
+	tmp = src->createMateria("cure");
     cloud->equip(tmp);
 
     cloud->use(0, *sephiroth);

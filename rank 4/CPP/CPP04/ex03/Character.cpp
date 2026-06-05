@@ -6,7 +6,7 @@
 /*   By: hgutterr <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/03 14:12:13 by hgutterr          #+#    #+#             */
-/*   Updated: 2026/06/05 20:14:22 by hgutterr         ###   ########.fr       */
+/*   Updated: 2026/06/05 22:32:51 by hgutterr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,6 +104,7 @@ void				Character::equip( AMateria* m )
 			return ;
 		}
 	}
+	delete m;
 }
 
 void				Character::unequip( int idx )
